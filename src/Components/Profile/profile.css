@@ -1,0 +1,54 @@
+/* Styles the profile image to be a circular shape with a silver border */
+.profileImg {
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  border: 2px solid silver;
+}
+
+/*  Styles the profile image container to have a maximum width of its content */
+.profileImgP {
+  max-width: max-content;
+}
+
+/* Styles the profile image edit button to be a semi-transparent circle with a centered text and a smooth opacity transition */
+.profileImgEdit {
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100px;
+  border-radius: 50%;
+  text-align: center;
+  transition: opacity 0.5s ease-in-out;
+  opacity: 0;
+  height: 0;
+}
+
+/* Upon hovering over the profile image container, the profile image edit button becomes visible  */
+.profileImgP:hover .profileImgEdit {
+  opacity: 1;
+  height: 100px;
+  cursor: pointer;
+}
+
+/* Styles the profile image edit button text */
+.profileImgEdit:hover p {
+  text-decoration: underline;
+}
+
+/* Styles the profile about textarea */
+.profileAbout {
+  width: 250px;
+  height: 150px;
+  resize: none;
+  padding: 0.1rem 0.2rem;
+}
+
+/* Adds a border class to the profile about textarea with an orange color */
+.bc-orange {
+  border: 2px solid rgb(248, 177, 151);
+}
+
+/* Styles the profile about textarea container to have a maximum width of 200px and fit its content height */
+.aboutWidth {
+  max-width: 200px;
+  height: fit-content;
+}

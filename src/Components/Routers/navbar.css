@@ -1,0 +1,96 @@
+/* Defining the styles for the navigation bar */
+.navigationBar {
+  height: 80px;
+  font-size: 20px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  background-color: rgb(246, 205, 157);
+  z-index: 10;
+}
+
+/* Defining the styles for the navigation bar logo */
+.navLogo {
+  color: rgb(255, 115, 0);
+  font-size: 22px;
+  font-weight: bolder;
+  margin-left: 1%;
+}
+
+/* Defining the styles for the navigation links */
+.navlinks a {
+  padding: 10px 5px;
+  text-decoration: none;
+  color: rgb(5, 3, 18);
+  text-align: center;
+  font-family: "kreon";
+  margin: auto;
+}
+
+/* Defining the styles for the active navigation link */
+.navigationBar .active {
+  background-image: linear-gradient(
+    to right,
+    rgba(174, 226, 244, 0.927),
+    white
+  );
+  border-radius: 20px;
+  width: 130px;
+  font-weight: 700;
+  color: rgb(247, 82, 6);
+}
+
+/* Defining the styles for the hover effect on navigation links */
+.navlinks a:hover {
+  background-color: rgba(240, 248, 255, 0.2);
+  border-radius: 10px;
+  color: rgb(247, 82, 6);
+}
+
+/* Defining the styles for the logout button in the navigation bar */
+.navigationBar .logoutBtn {
+  margin-top: 15px;
+  border: none;
+  width: 90px;
+}
+
+/* Defining the styles for the hover effect on the logout button */
+.navigationBar .logoutBtn:hover {
+  background-color: red;
+}
+
+/* Defining the styles for the navigation container in navconfig.js */
+.navConfig {
+  margin: 10px auto;
+  margin-top: 80px;
+  padding: 10px;
+}
+
+/* Defining styles for screens with a maximum width of 991px */
+/* target mobile screen size */
+@media (max-width: 991px) {
+  .offcanvas a {
+    color: rgb(0, 115, 255) !important;
+    font-size: 18px !important;
+    display: block;
+  }
+  .offcanvas .logoutBtn {
+    margin-left: 25% !important;
+    width: 150px;
+  }
+}
+
+/* Defining styles for screens with a minimum width of 1024px */
+@media screen and (min-width: 1024px) {
+  .navLogo {
+    margin-right: 100px;
+  }
+}
+
+/* Defining styles for screens with a minimum width of 1440px */
+@media screen and (min-width: 1440px) {
+  .navLogo {
+    margin-right: 250px;
+    font-size: 32px;
+  }
+}

@@ -1,0 +1,57 @@
+/* Importing the Poppins font from Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;500;700;900&display=swap");
+
+/* Set box-sizing to border-box to include padding and border in element's total width and height */
+*,
+*::after,
+*::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/* Set default font and text rendering */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: Poppins, sans-serif;
+}
+
+/* Set font for code element */
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+/* Set text color for elements with class tc-orange */
+.tc-orange {
+  color: rgb(252, 96, 6);
+}
+
+/* Set styles for individual route's parent div */
+.routeLayout {
+  box-shadow: rgb(211, 227, 243) 0px 8px 24px;
+  border-radius: 10px;
+  border: 0.1px solid rgb(243, 225, 219);
+}
+
+/* Set styles for scrollbar */
+/* These styles only work in WebKit-based browsers */
+::-webkit-scrollbar {
+  width: 6px; /* Set width of scrollbar */
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 20px; /* round the thumb */
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3); /* add a shadow to the thumb */
+  background-color: #fa874d; /* set the color of the thumb */
+}
+
+/* Set styles for input type=number */
+/* These styles only work in WebKit-based browsers */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none; /* remove the default spin button */
+
+  margin: 0; /* remove margin */
+}

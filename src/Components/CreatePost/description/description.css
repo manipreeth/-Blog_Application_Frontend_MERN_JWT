@@ -1,0 +1,126 @@
+/* TitTap Editor Design */
+/* Default styling for the main editor container */
+.ProseMirror {
+  padding: 10px;
+  background: white;
+  min-height: 230px;
+}
+
+/* Styling for the main editor container when it has focus */
+.ProseMirror:focus {
+  border: none;
+  outline: 2px solid rgb(250, 168, 110);
+}
+
+/* Adds margin to all child elements of the editor container except the first one */
+.ProseMirror > * + * {
+  margin-top: 0.75em;
+}
+
+/* Styling for ordered and unordered lists */
+.ProseMirror ul,
+.ProseMirror ol {
+  padding: 0 2rem;
+}
+
+/* Styling for heading tags */
+.ProseMirror h1,
+.ProseMirror h2,
+.ProseMirror h3,
+.ProseMirror h4,
+.ProseMirror h5,
+.ProseMirror h6 {
+  line-height: 1.1;
+}
+
+/* Styling for code blocks */
+.ProseMirror code {
+  background-color: rgba(#616161, 0.1);
+  color: #616161;
+}
+
+/* Styling for preformatted blocks */
+.ProseMirror pre {
+  background: #0d0d0d;
+  color: #fff;
+  font-family: "JetBrainsMono", monospace;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+}
+
+/* Styling for inline code */
+.ProseMirror code {
+  color: inherit;
+  padding: 0;
+  background: none;
+  font-size: 0.8rem;
+}
+
+/* Styling for images */
+.ProseMirror img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Styling for blockquotes */
+.ProseMirror blockquote {
+  padding-left: 1rem;
+  border-left: 3px solid #999999;
+}
+
+/* Styling for horizontal rules */
+.ProseMirror hr {
+  border: none;
+  border-top: 3px solid #999999;
+  margin: 2rem 0;
+}
+
+/* Styling for the text editor container */
+.textEditor {
+  border-radius: 5px;
+  border: 1px solid silver;
+}
+
+/* Styling for the menu bar container */
+.menuBar {
+  padding-bottom: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Styling for the menu bar buttons */
+.menuBar button {
+  font-size: 18px;
+  margin: 7px;
+  margin-right: 15px;
+  outline: none;
+  border: none;
+  background: none;
+  color: rgb(70, 70, 70);
+  cursor: pointer;
+}
+
+/* Styling for the last menu bar button */
+.menuBar button:last-child {
+  margin-right: 7px;
+}
+
+/* Styling for heading level 3 */
+.heading3 {
+  font-size: 15px;
+}
+
+/* Styling for the active menu bar button */
+button.is_active {
+  background: rgb(197, 197, 197);
+  padding: 2px 3px;
+  border-radius: 2px;
+}
+
+/* Media query for screens wider than 984px */
+@media screen and (min-width: 984px) {
+  .ProseMirror {
+    min-height: 300px;
+  }
+}

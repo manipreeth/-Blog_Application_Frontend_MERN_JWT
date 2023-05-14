@@ -1,0 +1,245 @@
+/* Style for login section */
+.login {
+  margin: 15px auto;
+  padding: 10px;
+  box-shadow: rgba(149, 157, 165, 0.6) 0px 8px 24px;
+  background-color: white;
+  border-radius: 10px;
+}
+
+/* Style for the CoderBlog section */
+.CoderBlog {
+  justify-content: center;
+}
+
+/* Style for CoderBlog logo */
+.coderBlogLogo {
+  justify-content: center;
+}
+
+/* Style for CoderBlog icon */
+.coderBlogIcon {
+  font-size: 60px;
+  margin-right: 10px;
+}
+
+/* Style for CoderBlog logo heading */
+.coderBlogLogo h1 {
+  margin-top: 5px;
+}
+
+/* Style for CoderBlog title */
+.coderBlogtitle {
+  text-align: center;
+  font-size: 20px;
+  margin: 35px auto 30px; /* Margin 35px from top, auto from left and right, 30px from bottom */
+}
+
+/* Style for login and register div */
+.login .loginDiv,
+.login .registerDiv {
+  box-shadow: rgba(149, 157, 165, 0.6) 0px 8px 24px;
+  padding: 10px 10px 15px;
+  margin: 20px auto;
+  border-radius: 10px;
+  width: 280px;
+}
+
+/* Style for login div heading */
+.login .loginDiv h1 {
+  margin: 1px auto 30px;
+}
+
+/* Style for login form */
+.loginForm {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+/* Style for login form label */
+.login .loginForm label {
+  font-size: 18px;
+}
+
+/* Style for login input field */
+.login input {
+  display: block;
+  padding: 15px 5px;
+  border: none;
+  border-bottom: 2px dotted rgb(252, 96, 6);
+  font-size: 18px;
+  margin-top: 10px;
+  height: 25px;
+  width: 235px;
+}
+
+.mb-30 {
+  margin-bottom: 30px;
+}
+
+/* Style for login input field on focus */
+.login input:focus {
+  border: 2px solid rgb(252, 96, 6);
+  outline: none;
+}
+
+/* Style for login and register buttons */
+.loginDiv button,
+.registerDiv button {
+  padding: 10px;
+  width: 250px;
+  font-size: 18px;
+  font-weight: 600;
+  background-color: rgb(252, 96, 6);
+  border: 0.1px solid rgb(252, 96, 6);
+  border-radius: 8px;
+  color: white;
+  margin: 0px auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+/* Responsive code */
+/* For device width 375px and above */
+@media Screen and (min-width: 375px) {
+  .login .loginDiv,
+  .login .registerDiv {
+    width: 320px;
+    padding: 10px 30px 15px;
+  }
+}
+
+/* This section targets screens with a minimum width of 425px */
+@media Screen and (min-width: 425px) {
+  /* These styles apply to the login and register sections */
+  .login .loginDiv,
+  .login .registerDiv {
+    width: 330px;
+    padding: 10px 35px 15px;
+    margin-top: 60px;
+  }
+}
+
+/* This section targets screens with a minimum width of 768px */
+@media Screen and (min-width: 768px) {
+  /* These styles apply to the login section */
+  .login {
+    display: flex;
+    padding: 60px 10px;
+    margin: 30px auto;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  /* These styles apply to the blog title */
+  .coderBlogtitle {
+    margin-top: 10px;
+  }
+
+  /* These styles apply to the login and register sections */
+  .login .loginDiv {
+    width: 300px;
+    padding: 10px 15px;
+  }
+  .login .registerDiv {
+    margin-top: 0;
+  }
+}
+
+/* This section targets screens with a minimum width of 1024px */
+@media Screen and (min-width: 1024px) {
+  /* These styles apply to the login section */
+  .login {
+    padding: 60px 20px;
+    width: 90%;
+    margin: 15px auto;
+  }
+
+  /* These styles apply to the login and register sections */
+  .login .loginDiv,
+  .login .registerDiv {
+    width: 450px;
+    padding: 10px 35px 15px;
+    margin-right: 5px;
+  }
+
+  /* These styles apply to the login section's heading */
+  .login .loginDiv h1 {
+    margin-top: 10px;
+  }
+
+  /* These styles apply to the login form labels */
+  .login .loginForm label {
+    font-size: 18px;
+    margin: 2px;
+  }
+
+  /* These styles apply to the input fields in the login and register sections */
+  .loginDiv input,
+  .registerDiv input {
+    margin-top: 20px;
+    height: 45px;
+    width: 350px;
+  }
+
+  /* These styles apply to the register section's "mb-30" class */
+  .registerDiv .mb-30 {
+    margin-top: auto;
+  }
+
+  /* These styles apply to the login section's "mb-30" class */
+  .loginDiv .mb-30 {
+    margin-bottom: 50px;
+  }
+
+  /* These styles apply to the login and register sections' buttons */
+  .loginDiv button {
+    padding: 18px;
+    width: 350px;
+    font-size: 20px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+  }
+
+  .registerDiv button {
+    width: 350px;
+    font-size: 20px;
+    padding: 14px;
+  }
+
+  /* These styles apply to the register section's link */
+  .regLink {
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+}
+
+/* This section targets screens with a minimum width of 1440px */
+@media Screen and (min-width: 1440px) {
+  /* These styles apply to the login section */
+  .login {
+    padding: 60px 40px;
+  }
+
+  /* These styles apply to the blog icon */
+  .coderBlogIcon {
+    font-size: 110px;
+  }
+  .coderBlogLogo h1 {
+    font-size: 62px;
+  }
+
+  .coderBlogtitle {
+    font-size: 26px;
+    margin-top: 5px;
+  }
+
+  .login .loginDiv {
+    margin-right: 15px;
+  }
+
+  .login .loginDiv h1 {
+    margin-bottom: 40px;
+  }
+}

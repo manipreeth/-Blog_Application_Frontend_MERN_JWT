@@ -1,0 +1,45 @@
+/* container of each post */
+.myposts {
+  margin: 25px auto;
+  padding: 10px;
+  box-shadow: rgb(211, 227, 243) 0px 8px 24px;
+  background-color: white;
+  border-radius: 10px;
+  width: 300px;
+  border: 1px solid rgba(248, 136, 52, 0.2);
+}
+
+/* image inside each post */
+.myposts img {
+  max-width: 100%;
+  text-align: center;
+  margin: 15px auto;
+}
+
+.myposts p {
+  text-align: left;
+}
+
+/* Description of post */
+.mypostDes {
+  height: 300px;
+  overflow: hidden;
+}
+
+/* No posts Icon */
+.noPosts {
+  text-align: center;
+  width: fit-content;
+  margin: 10px auto;
+}
+.noPostsIcon {
+  width: 100%;
+}
+
+/* Media query for screens with a minimum width of 768px */
+@media screen and (min-width: 768px) {
+  /* CSS for the "No Posts" icon when viewed on larger screens */
+  .noPostsIcon {
+    width: 60%;
+  }
+}

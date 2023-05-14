@@ -1,0 +1,99 @@
+/* Style for the home container */
+.home {
+  margin: auto;
+  margin-top: 20px;
+}
+
+/* Style for each post container */
+.homePosts {
+  box-shadow: rgba(174, 187, 200, 0.6) 0px 8px 24px;
+  border: 1px solid rgba(248, 136, 52, 0.2); /* add border with transparent orange color */
+  background-color: white;
+  border-radius: 10px;
+  padding: 15px;
+  margin: 2px auto 30px; /* add margin to top and bottom, auto to center horizontally */
+  width: 100%;
+}
+
+/* Style for the image inside the post */
+.homePosts .homePostImg {
+  max-width: 235px;
+  max-height: 200px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  margin: 10px auto; /* center the image horizontally */
+  display: flex;
+  justify-content: center;
+}
+
+/* Style for the user image in the post */
+.homeUserImg {
+  width: 35px;
+  border-radius: 50%;
+  height: 35px;
+}
+
+/* Style for the post heading */
+.postHeading {
+  font-size: 22px;
+}
+
+/* Style for the post description */
+.homePostD {
+  text-align: justify;
+}
+
+/* Style for the post description text */
+.homePostdesc {
+  max-height: 150px;
+  overflow: hidden;
+}
+
+/* Style for the "Read more" link */
+.readmore {
+  text-decoration: none;
+}
+
+/* Style for the "Read more" link when hovering */
+.readmore:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* Media query for screen width 768px or higher */
+@media screen and (min-width: 768px) {
+  /* Style for the post details container */
+  .homepostDetails {
+    width: fit-content;
+    margin-left: 20px;
+  }
+  /* Style for the post heading at 768px or higher */
+  .postHeading {
+    font-size: 26px;
+  }
+}
+
+/* Media query for screen width 1024px or higher */
+@media screen and (min-width: 1024px) {
+  /* Style for the user image at 1024px or higher */
+  .homeUserImg {
+    width: 45px;
+  }
+
+  /* Style for the post description at 1024px or higher */
+  .homePostD {
+    font-size: 18px;
+  }
+
+  /* Style for the post details container at 1024px or higher */
+  .homepostDetails {
+    width: fit-content;
+  }
+  /* Style for the image inside the post at 1024px or higher */
+  .homePosts .homePostImg {
+    max-width: 350px;
+  }
+  .test {
+    width: 650px;
+  }
+}
