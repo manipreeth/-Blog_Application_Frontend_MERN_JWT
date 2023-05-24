@@ -1,17 +1,12 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 
 import { useNavigate } from "react-router";
-import { ParentContext } from "../../App";
 
 import "./login.css";
 import Logo from "./Logo";
 
 function LoginForm() {
-  // Using context to handle navigation state
-  const context = useContext(ParentContext);
-  const [navState, handleNavState] = context.nav;
-
   // Using react-router's navigate function to redirect on successful login
   const navigate = useNavigate();
 
@@ -20,6 +15,8 @@ function LoginForm() {
     email: "",
     password: "",
   });
+
+  const [loginBtnLabel, setLoginBtnLabel] = useState(true);
 
   // Function to handle user input changes
   const handleLoginForm = (e) => {
@@ -30,8 +27,13 @@ function LoginForm() {
   };
 
   // Function to make login request and handle response
-  const login = () => {
-    return axios
+  const login = async (event) => {
+    event.preventDefault();
+
+    // Display "Logging in..." in login button
+    setLoginBtnLabel(false);
+
+    return await axios
       .post("/users/login", {
         email: loginDetails.email,
         password: loginDetails.password,
@@ -42,10 +44,30 @@ function LoginForm() {
         const token = res.data.token;
         localStorage.setItem("token", token);
 
-        handleNavState(!navState);
-        navigate("/");
+        // After storing token navigate to validate otp
+        navigate("/otpvalidation");
       })
       .catch((err) => {
+        // Display "Logging in..." in login button
+        setLoginBtnLabel(true);
+
+        const message = err.response.data.message;
+        const messageBreakdown = message.split(" ");
+        const id = messageBreakdown[3];
+
+        // Check if the error message indicates that the user needs to verify their account
+        if (
+          `${messageBreakdown[0]},${messageBreakdown[1]},${messageBreakdown[2]}` ===
+          "Verify,your,account"
+        ) {
+          // Display an alert asking the user to verify their account
+          alert("Please Verify Your Account By OTP Sent To Your Mail");
+
+          // Redirect the user to the verify account page, passing the user ID as a query parameter
+          navigate(`/verifyaccount?userid=${id}`);
+        }
+
+        // Alert the original error message
         alert(err.response.data.message);
       });
   };
@@ -66,6 +88,7 @@ function LoginForm() {
             onChange={(e) => handleLoginForm(e)}
             placeholder="exmaple@xyz.com"
             className="mb-30"
+            required
           />
           <label className="pswdLabel">Password</label>
           <input
@@ -74,9 +97,16 @@ function LoginForm() {
             name="password"
             onChange={(e) => handleLoginForm(e)}
             placeholder="***************"
+            required
           />
+          {loginDetails.email && loginDetails.password ? (
+            <button onClick={login}>
+              {loginBtnLabel ? "Login" : "Logging in..."}
+            </button>
+          ) : (
+            <button>Login</button>
+          )}
         </form>
-        <button onClick={login}>Login</button>
       </div>
     </div>
   );
