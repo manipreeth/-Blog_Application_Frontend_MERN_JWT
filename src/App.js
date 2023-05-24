@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Navbar from "./Components/Routers/Navbar";
-import PathConfig from "./Components/Routers/navConfig";
+import PathConfig from "./Components/Routers/NavConfig";
 
 export const ParentContext = React.createContext();
 
