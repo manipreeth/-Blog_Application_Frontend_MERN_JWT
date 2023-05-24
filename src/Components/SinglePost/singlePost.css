@@ -27,7 +27,6 @@
 }
 .individualCmnt {
   background-color: white;
-
   padding-top: 5px;
   border-radius: 5px;
 }
@@ -65,6 +64,41 @@
   width: 30px;
   height: 25px;
   cursor: pointer;
+}
+
+.actionBtns {
+  font-size: 16px;
+  border: 1px solid silver;
+  border-radius: 20px;
+  cursor: pointer;
+  overflow: hidden;
+  height: max-content;
+}
+.likeBtn {
+  border: none;
+  font-size: 25px;
+}
+.unlikeBtn {
+  color: red;
+  border: none;
+  font-size: 25px;
+}
+.loadingAnimation {
+  width: 90vw;
+  height: 60vh;
+}
+.loaderanimation {
+  width: 5vw;
+  height: 10vh;
+  display: inline-block;
+}
+
+.likecount {
+  font-size: 0.8rem;
+  margin-top: 0.1rem;
+}
+.cursorNone {
+  cursor: none;
 }
 
 @media screen and (min-width: 768px) {
