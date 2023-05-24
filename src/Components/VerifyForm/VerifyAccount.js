@@ -30,7 +30,7 @@ const VerifyAccount = () => {
     // Handle OTP validation logic here
     await axios
       .post(
-        `/api/v1/users/verifyEmail/${userId}`,
+        `/users/verifyEmail/${userId}`,
         { otp: otp },
         {
           headers: {

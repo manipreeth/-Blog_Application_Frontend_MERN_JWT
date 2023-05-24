@@ -30,8 +30,15 @@ function Home() {
 
   // Fetches post data from the backend API upon component mount
   useEffect(() => {
+    // Send JSON Web Token which is stored in LocalStorage for Authorization
+    const token = localStorage.getItem("token");
+
     axios
-      .get("/posts")
+      .get("/posts", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then((res) => {
         const details = res.data.data;
         handlePost(details);

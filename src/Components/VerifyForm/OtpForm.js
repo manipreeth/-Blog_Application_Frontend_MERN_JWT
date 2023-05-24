@@ -24,9 +24,22 @@ const OtpForm = () => {
   const handleOtpSubmit = async (e) => {
     e.preventDefault();
 
+    console.log(otp);
+
+    // Send JSON Web Token which is stored in LocalStorage for Authorization
+    const token = localStorage.getItem("token");
+
     // Handle OTP validation logic here
     await axios
-      .post("/api/v1/users/verifyotp", { otp: otp })
+      .post(
+        "/users/verifyotp",
+        { otp: otp },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
       .then((res) => {
         handleNavState(!navState);
         navigate("/");
