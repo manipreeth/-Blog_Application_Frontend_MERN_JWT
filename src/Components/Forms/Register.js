@@ -18,7 +18,7 @@ function Register() {
   });
 
   // declaring state variables to manage button label and loader
-  const [registerbtnLabel, handleregisterbtnLabel] = useState(true);
+  const [registerbtnLabel, handleregisterbtnLabel] = useState(false);
 
   // handling user input data and updating state variables
   const handleRegisterForm = (e) => {
@@ -33,8 +33,8 @@ function Register() {
     const { fullname, email, password, confirmPassword, mobile } =
       registerDetails;
 
-    // toggling button label to show loader
-    handleregisterbtnLabel(!registerbtnLabel);
+    // toggling button label to show loader message label
+    handleregisterbtnLabel(true);
 
     // checking if password and confirm password are same or not
     if (password !== confirmPassword) {
@@ -49,11 +49,32 @@ function Register() {
           mobile: mobile,
         })
         .then((res) => {
-          // redirecting to login page on successful registration
-          navigate("/login");
-          alert(res.data.status);
+          handleregisterbtnLabel(false);
+          // redirecting to verify account page on successful registration
+          navigate(`/verifyaccount?userid=${res.data.data._id}`);
+          console.log(res);
         })
         .catch((err) => {
+          handleregisterbtnLabel(false);
+
+          const message = err.response.data.message;
+          console.log("----Message----", message);
+          const messageBreakdown = message.split(" ");
+          console.log("----messageBreakdown----", messageBreakdown);
+          const id = messageBreakdown[3];
+          console.log(id);
+
+          console.log(
+            `${messageBreakdown[0]},${messageBreakdown[1]},${messageBreakdown[2]}`
+          );
+
+          if (
+            `${messageBreakdown[0]},${messageBreakdown[1]},${messageBreakdown[2]}` ===
+            "Verify,your,account"
+          ) {
+            alert("Please Verify Your Account By OTP Sent To Your Mail");
+            navigate(`/verifyaccount?userid=${id}`);
+          }
           // displaying error message on failed registration
           alert(err.response.data.message);
         });
@@ -80,6 +101,7 @@ function Register() {
             className="mb-30"
             id="name"
             maxLength="15"
+            required
           />
           <label htmlFor="email">Email Id</label>
           <input
@@ -91,6 +113,7 @@ function Register() {
             className="mb-30"
             id="email"
             maxLength="20"
+            required
           />
           <label htmlFor="pswd">Password</label>
           <input
@@ -102,6 +125,7 @@ function Register() {
             id="pswd"
             className="mb-30"
             maxLength="13"
+            required
           />
 
           <label htmlFor="confirmPassword">Confirm Password</label>
@@ -114,6 +138,7 @@ function Register() {
             id="confirmPassword"
             className="mb-30"
             maxLength="13"
+            required
           />
 
           <label htmlFor="mobile">Mobile Number</label>
@@ -127,12 +152,21 @@ function Register() {
             className="mb-30"
             size="10"
             min="0"
+            required
           />
-        </form>
 
-        <button onClick={Register}>
-          {registerbtnLabel ? "Register" : "Setting up your space..."}
-        </button>
+          {registerDetails.fullname &&
+          registerDetails.email &&
+          registerDetails.password &&
+          registerDetails.confirmPassword &&
+          registerDetails.mobile ? (
+            <button onClick={Register}>
+              {registerbtnLabel ? "Setting up your space..." : "Register"}
+            </button>
+          ) : (
+            <button>Register</button>
+          )}
+        </form>
       </div>
     </div>
   );
