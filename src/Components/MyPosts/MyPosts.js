@@ -3,8 +3,8 @@ import axios from "axios";
 import "./MyPosts.css";
 
 // Images
-import TestImg from "../../images/test.png";
-import NoPosts from "../../images/noPosts.png";
+import TestImg from "../../Assets/Images/test.png";
+import NoPosts from "../../Assets/Images/noPosts.png";
 
 // Context
 import { ParentContext } from "../../App";

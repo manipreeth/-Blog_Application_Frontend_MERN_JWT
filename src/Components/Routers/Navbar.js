@@ -10,7 +10,10 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Offcanvas from "react-bootstrap/Offcanvas";
-import BlogLogo from "../../images/BlogLogo.png";
+
+import BlogLogo from "../../Assets/Images/BlogLogo.png";
+
+// import context from App.js
 import { ParentContext } from "../../App";
 
 // Creating a functional component called NavigationBar

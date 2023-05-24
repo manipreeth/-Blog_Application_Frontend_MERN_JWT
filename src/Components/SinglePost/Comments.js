@@ -1,8 +1,8 @@
 import React, { useContext, useEffect } from "react";
 import axios from "axios";
 
-import UserImg from "../../images/userPic.png";
-import CommentImg from "../../images/comment.png";
+import UserImg from "../../Assets/Images/userPic.png";
+import CommentImg from "../../Assets/Images/comment.png";
 import { commentParent } from "./SinglePost";
 
 function Comments(props) {

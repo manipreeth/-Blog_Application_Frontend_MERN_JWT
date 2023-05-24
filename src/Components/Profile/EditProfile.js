@@ -3,7 +3,7 @@ import { HiOutlinePencil } from "react-icons/hi";
 import { ParentContext } from "../../App";
 import Form from "react-bootstrap/Form";
 
-import UserImg from "../../images/userPic.png";
+import UserImg from "../../Assets/Images/userPic.png";
 import axios from "axios";
 
 function EditProfile(props) {

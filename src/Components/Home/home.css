@@ -60,6 +60,16 @@
   cursor: pointer;
 }
 
+.homeAnimationLogo {
+  height: 50vh !important;
+  width: 100vw;
+}
+
+.blogHeading {
+  font-family: "Finger Paint", cursive;
+  font-size: 25px;
+}
+
 /* Media query for screen width 768px or higher */
 @media screen and (min-width: 768px) {
   /* Style for the post details container */
@@ -70,6 +80,17 @@
   /* Style for the post heading at 768px or higher */
   .postHeading {
     font-size: 26px;
+  }
+
+  /* Style for the animation at 768px or higher  */
+  .homeAnimationLogo {
+    height: 70vh !important;
+    width: 100vw;
+  }
+
+  /* Style for the Blog heading at 768px or higher */
+  .blogHeading {
+    font-size: 30px;
   }
 }
 
@@ -95,5 +116,16 @@
   }
   .test {
     width: 650px;
+  }
+
+  /* Style for the animation at 1024px or higher  */
+  .homeAnimationLogo {
+    height: 83vh !important;
+    width: 100vw;
+  }
+
+  /* Style for the Blog heading at 1024px or higher */
+  .blogHeading {
+    font-size: 45px;
   }
 }

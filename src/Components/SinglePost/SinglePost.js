@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./singlePost.css";
 import axios from "axios";
 
-import LoadingImg from "../../images/loading.png";
+import LoadingImg from "../../Assets/Images/loading.png";
 
 import Comments from "./Comments";
 import CommentInput from "./CommentInput";

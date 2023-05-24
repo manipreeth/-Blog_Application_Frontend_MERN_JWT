@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import axios from "axios";
 import "./profile.css";
 
-import UserImg from "../../images/userPic.png";
+import UserImg from "../../Assets/Images/userPic.png";
 import EditProfile from "./EditProfile";
 import { ParentContext } from "../../App";
 
