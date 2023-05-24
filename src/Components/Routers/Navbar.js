@@ -11,7 +11,7 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Offcanvas from "react-bootstrap/Offcanvas";
 
-import BlogLogo from "../../Assets/Images/BlogLogo.png";
+import BSLogo from "../../Assets/Images/bs.png";
 
 // import context from App.js
 import { ParentContext } from "../../App";
@@ -32,7 +32,7 @@ function NavigationBar() {
       .then((res) => {
         localStorage.removeItem("token");
         handleNavState(!navState);
-        navigate("/login");
+        navigate("/");
         window.location.reload();
       })
       .catch((err) => console.log(err));
@@ -45,9 +45,9 @@ function NavigationBar() {
         <Container fluid>
           <Navbar.Brand href="/">
             <span className="navLogo">
-              <img src={BlogLogo} width="40px" height="40px" alt="coderblog" />
+              <img src={BSLogo} width="40px" height="40px" alt="coderblog" />
               Coder
-              <span className="text-body ">Blog</span>
+              <span className="ms-1 text-white ">BlogoSphere</span>
             </span>
           </Navbar.Brand>
           <Navbar.Toggle
@@ -60,11 +60,8 @@ function NavigationBar() {
             placement="end"
           >
             <Offcanvas.Header closeButton>
-              <Offcanvas.Title
-                id="offcanvasNavbarLabel-expand-lg"
-                className="tc-orange fw-bolder"
-              >
-                &lt;/&gt; Coder Blog
+              <Offcanvas.Title id="offcanvasNavbarLabel-expand-lg">
+                &lt;/&gt;BlogoSphere
               </Offcanvas.Title>
             </Offcanvas.Header>
             <Offcanvas.Body>
