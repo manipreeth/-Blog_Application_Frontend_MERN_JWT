@@ -30,6 +30,8 @@ function Register() {
 
   // Handle the form submission
   const Register = (event) => {
+    event.preventDefault();
+
     const { fullname, email, password, confirmPassword, mobile } =
       registerDetails;
 
@@ -52,21 +54,13 @@ function Register() {
           handleregisterbtnLabel(false);
           // redirecting to verify account page on successful registration
           navigate(`/verifyaccount?userid=${res.data.data._id}`);
-          console.log(res);
         })
         .catch((err) => {
           handleregisterbtnLabel(false);
 
           const message = err.response.data.message;
-          console.log("----Message----", message);
           const messageBreakdown = message.split(" ");
-          console.log("----messageBreakdown----", messageBreakdown);
           const id = messageBreakdown[3];
-          console.log(id);
-
-          console.log(
-            `${messageBreakdown[0]},${messageBreakdown[1]},${messageBreakdown[2]}`
-          );
 
           if (
             `${messageBreakdown[0]},${messageBreakdown[1]},${messageBreakdown[2]}` ===
@@ -74,9 +68,10 @@ function Register() {
           ) {
             alert("Please Verify Your Account By OTP Sent To Your Mail");
             navigate(`/verifyaccount?userid=${id}`);
+          } else {
+            // displaying error message on failed registration
+            alert(err.response.data.message);
           }
-          // displaying error message on failed registration
-          alert(err.response.data.message);
         });
     }
   };

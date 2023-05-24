@@ -39,8 +39,8 @@ function LoginForm() {
         password: loginDetails.password,
       })
       .then((res) => {
-        // Setting login status to true
         // After successful login
+        // Store token into localStorage
         const token = res.data.token;
         localStorage.setItem("token", token);
 
@@ -65,10 +65,10 @@ function LoginForm() {
 
           // Redirect the user to the verify account page, passing the user ID as a query parameter
           navigate(`/verifyaccount?userid=${id}`);
+        } else {
+          // Alert the original error message
+          alert(err.response.data.message);
         }
-
-        // Alert the original error message
-        alert(err.response.data.message);
       });
   };
 
