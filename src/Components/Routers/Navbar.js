@@ -46,7 +46,6 @@ function NavigationBar() {
           <Navbar.Brand href="/">
             <span className="navLogo">
               <img src={BSLogo} width="40px" height="40px" alt="coderblog" />
-              Coder
               <span className="ms-1 text-white ">BlogoSphere</span>
             </span>
           </Navbar.Brand>
