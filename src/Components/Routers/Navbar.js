@@ -27,8 +27,15 @@ function NavigationBar() {
 
   // Create a function called Logout which will log the user out when clicked
   const Logout = () => {
+    // Send JSON Web Token which is stored in LocalStorage for Authorization
+    const token = localStorage.getItem("token");
     axios
-      .get("/users/logout")
+      .get("/users/logout", {
+        // Set Authorization header to include the token
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then((res) => {
         localStorage.removeItem("token");
         handleNavState(!navState);
