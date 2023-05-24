@@ -103,22 +103,25 @@ const MenuBar = ({ editor }) => {
   );
 };
 
-const Description = ({ setDescription }) => {
-  const editor = useEditor({
-    extensions: [StarterKit, Underline],
-    content: ``,
+const Description = ({ setDescription, initialValue }) => {
+  const editor = useEditor(
+    {
+      extensions: [StarterKit, Underline],
+      content: `${initialValue ? initialValue : null}`,
 
-    onUpdate: ({ editor }) => {
-      const html = editor.getHTML();
-      setDescription(html);
+      onUpdate: ({ editor }) => {
+        const html = editor.getHTML();
+        setDescription(html);
+      },
     },
-  });
+    [initialValue]
+  );
 
   return (
     <>
       <div className="textEditor">
         <MenuBar editor={editor} />
-        <EditorContent editor={editor} />
+        <EditorContent editor={editor} value={initialValue} />
       </div>
     </>
   );
