@@ -12,8 +12,13 @@ import { ParentContext } from "../../App";
 // other imports
 import { useNavigate } from "react-router";
 import { FiExternalLink } from "react-icons/fi";
+import { FaPen } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import parse from "html-react-parser";
+
+// Import Lottie animation dependency
+import Lottie from "lottie-react";
+import LodingAnimation from "../../Assets/LottieAnimations/loading.json";
 
 function MyPosts() {
   // Using the useContext hook to access the `nav` state from the `ParentContext`
@@ -71,13 +76,22 @@ function MyPosts() {
             <div className="myposts" key={value._id}>
               <div className="d-flex flex-wrap justify-content-between align-content-center">
                 <h1 className="postHeading">{value.title} </h1>
-                <button
-                  className="btn p-0 fw-bolder text-danger"
-                  title="Delete"
-                  onClick={() => deletePost(value._id)}
-                >
-                  <MdDelete size="20px" />
-                </button>
+                <div>
+                  <button
+                    className="btn p-0 me-1 fw-bolder text-secondary"
+                    title="Edit"
+                    onClick={() => navigate(`/editPost?postid=${value._id}`)}
+                  >
+                    <FaPen size="18px" />
+                  </button>
+                  <button
+                    className="btn p-0 fw-bolder text-danger"
+                    title="Delete"
+                    onClick={() => deletePost(value._id)}
+                  >
+                    <MdDelete size="20px" />
+                  </button>
+                </div>
               </div>
 
               {/* Displaying the post image */}
@@ -99,27 +113,43 @@ function MyPosts() {
           );
         })
       ) : (
-        // If there are no posts, display a message with an image and a button to create a new post if the user is logged in, or to login if not
-        <div className="noPosts pb-5">
-          <img src={NoPosts} className="noPostsIcon" />
-          <h3>No Posts Found !</h3>
-          {navState ? (
-            <button
-              onClick={() => navigate("/createPost")}
-              className="btn btn-success"
-            >
-              Make your First Post
-            </button>
-          ) : (
-            <button
-              onClick={() => navigate("/login")}
-              className="btn btn-success"
-            >
-              Login to post
-            </button>
-          )}
+        <div className="d-flex  flex-column align-items-center">
+          <Lottie
+            animationData={LodingAnimation}
+            className="loadingAnimation"
+          />
+          <h1 className=" mt-1 ">Loading...</h1>
         </div>
       )}
+
+      {/* If there are no posts, display a message with an image and a button to
+      create a new post if the user is logged in, or to login if not */}
+      {MyPost
+        ? MyPost.length === 0 && (
+            <div className="noPosts pb-5">
+              <img src={NoPosts} className="noPostsIcon" />
+              <h3>No Posts Found !</h3>
+
+              {/* If the user login and no posts are created by user then button with label "Make your first post" is displayed;
+                if user login is false then "Login to post" label button is displayed */}
+              {navState ? (
+                <button
+                  onClick={() => navigate("/createPost")}
+                  className="btn btn-success"
+                >
+                  Make your First Post
+                </button>
+              ) : (
+                <button
+                  onClick={() => navigate("/login")}
+                  className="btn btn-success"
+                >
+                  Login to post
+                </button>
+              )}
+            </div>
+          )
+        : null}
     </div>
   );
 }
