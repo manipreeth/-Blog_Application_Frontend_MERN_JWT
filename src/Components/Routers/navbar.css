@@ -5,13 +5,13 @@
   width: 100%;
   position: fixed;
   top: 0;
-  background-color: rgb(246, 205, 157);
+  background-color: rgba(0, 0, 0, 0.904);
   z-index: 10;
 }
 
 /* Defining the styles for the navigation bar logo */
 .navLogo {
-  color: rgb(255, 115, 0);
+  color: white;
   font-size: 22px;
   font-weight: bolder;
   margin-left: 1%;
@@ -37,14 +37,14 @@
   border-radius: 20px;
   width: 130px;
   font-weight: 700;
-  color: rgb(247, 82, 6);
+  color: rgb(5, 3, 18);
 }
 
 /* Defining the styles for the hover effect on navigation links */
 .navlinks a:hover {
   background-color: rgba(240, 248, 255, 0.2);
-  border-radius: 10px;
-  color: rgb(247, 82, 6);
+  border-radius: 20px;
+  color: red;
 }
 
 /* Defining the styles for the logout button in the navigation bar */
@@ -61,7 +61,7 @@
 
 /* Defining the styles for the navigation container in navconfig.js */
 .navConfig {
-  margin: 10px auto;
+  margin: 0px auto;
   margin-top: 80px;
   padding: 10px;
 }
@@ -84,6 +84,9 @@
 @media screen and (min-width: 1024px) {
   .navLogo {
     margin-right: 100px;
+  }
+  .navlinks a {
+    color: white;
   }
 }
 
