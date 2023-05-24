@@ -17,7 +17,6 @@ function CreatePost() {
 
   // State variables for the post form
   const [description, setDescription] = useState("");
-  const [content, handleContent] = useState("");
   const [postForm, handlePostForm] = useState({
     title: "",
     category: "",
@@ -43,14 +42,17 @@ function CreatePost() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Update the content state with the entered description
-    handleContent(description);
     // Update the button label to show loading state
-    handlePostbtnLabel(!postbtnLabel);
+    handlePostbtnLabel(false);
 
     // Extract the form data to be sent to the server
     const { title, category, postImage } = postForm;
-    const postDetails = { title, category, postImage, description: content };
+    const postDetails = {
+      title,
+      category,
+      postImage,
+      description: description,
+    };
 
     // Send JSON Web Token which is stored in LocalStorage for Authorization
     const token = localStorage.getItem("token");
@@ -71,9 +73,11 @@ function CreatePost() {
           postImage: null,
         });
         setDescription("");
+        handlePostbtnLabel(true);
         alert(res.data.status);
       })
       .catch((err) => {
+        handlePostbtnLabel(true);
         // Show an alert with the error message on failed creation of the post
         alert(err.response.data.message);
       });
@@ -119,13 +123,16 @@ function CreatePost() {
             id="category"
           >
             <option>Select the Category</option>
+            <option value="Agriculture">Agriculture</option>
+            <option value="Army">Army</option>
             <option value="HTML">HTML</option>
-            <option value="CSS">CSS</option>
-            <option value="JavaScript">JavaScript</option>
             <option value="Node Js">Node Js</option>
-            <option value="React JS">React JS</option>
-            <option value="Mongo DB">Mongo DB</option>
-            <option value="Express">Express</option>
+            <option value="Bussiness">Bussiness</option>
+            <option value="Accounting">Accounting</option>
+            <option value="Trading">Trading</option>
+            <option value="Geography">Geography</option>
+            <option value="Politics">Politics</option>
+            <option value="Sports">Sports</option>
             <option value="Others">Others</option>
           </Form.Select>
         </Form.Group>
