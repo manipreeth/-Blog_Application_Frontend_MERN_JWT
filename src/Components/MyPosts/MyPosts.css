@@ -41,6 +41,12 @@
   width: 100%;
 }
 
+.postTitleSize {
+  width: 230px;
+  overflow: hidden;
+  height: 30px;
+}
+
 /* Media query for screens with a minimum width of 768px */
 @media screen and (min-width: 768px) {
   /* CSS for the "No Posts" icon when viewed on larger screens */

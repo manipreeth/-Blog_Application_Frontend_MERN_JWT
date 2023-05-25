@@ -17,11 +17,11 @@
 
 /* Style for the image inside the post */
 .homePosts .homePostImg {
-  max-width: 235px;
+  width: 235px;
   max-height: 200px;
   margin-bottom: 10px;
   border-radius: 5px;
-  margin: 10px auto; /* center the image horizontally */
+  /* margin: 10px auto; center the image horizontally */
   display: flex;
   justify-content: center;
 }
@@ -108,11 +108,17 @@
 
   /* Style for the post details container at 1024px or higher */
   .homepostDetails {
-    width: fit-content;
+    width: 65%;
   }
+
+  /* Style for image parent div container displayed in home*/
+  .homeImgContainer {
+    width: 30%;
+  }
+
   /* Style for the image inside the post at 1024px or higher */
   .homePosts .homePostImg {
-    max-width: 350px;
+    width: 280px;
   }
   .test {
     width: 650px;
@@ -127,5 +133,12 @@
   /* Style for the Blog heading at 1024px or higher */
   .blogHeading {
     font-size: 45px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  /* Style for the post details container at 1024px or higher */
+  .homepostDetails {
+    width: 85%;
   }
 }

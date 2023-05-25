@@ -71,53 +71,68 @@ function Home() {
             // Loops through the posts and renders a UI for each post
             post.map((item) => {
               return (
-                <div
-                  className="homePosts d-md-flex  justify-content-lg-between "
-                  key={item._id}
-                >
-                  <div className="me-lg-5 test">
-                    <div className=" mx-1 ">
-                      <p className="d-flex align-items-center">
-                        <img
-                          src={
-                            item.user.profileImage
-                              ? item.user.profileImage
-                              : UserImg
-                          }
-                          className="homeUserImg "
-                          alt="User Profile pic"
-                        />
-                        &nbsp;
-                        <span className="ms-1 fw-bold">
-                          {item.user.fullname}
-                        </span>
-                      </p>
-                    </div>
-
-                    {/* Renders the post image */}
-                    <img
-                      src={item.image}
-                      className="homePostImg "
-                      alt="Post Image"
-                    />
-                  </div>
-                  <div className="mt-md-5 ms-md-2 mt-3 homepostDetails ">
-                    <h1 className=" postHeading ">{item.title}</h1>
-                    <div className="p-1 homePostD">
-                      {/* Renders the post description */}
-                      <p className="homePostdesc mb-0">
-                        {parse(`${item.description}`)}
-                      </p>
-                      {/* Renders a button to navigate to the single post page */}
-                      <a
-                        className=" d-lg-block  readmore"
-                        onClick={() =>
-                          navigate(`/singlePost?postid=${item._id}`)
+                <div className="homePosts  " key={item._id}>
+                  <div className=" mx-1 d-none d-md-block ">
+                    <p className="d-flex align-items-center">
+                      <img
+                        src={
+                          item.user.profileImage
+                            ? item.user.profileImage
+                            : UserImg
                         }
-                      >
-                        Read more
-                        <FiExternalLink />
-                      </a>
+                        className="homeUserImg "
+                        alt="User Profile pic"
+                      />
+                      &nbsp;
+                      <span className="ms-1 fw-bold">{item.user.fullname}</span>
+                    </p>
+                  </div>
+
+                  <div className="d-md-flex  justify-content-lg-between">
+                    <div className="me-lg-5 mt-1 homeImgContainer">
+                      <div className=" mx-1 d-md-none">
+                        <p className="d-flex align-items-center">
+                          <img
+                            src={
+                              item.user.profileImage
+                                ? item.user.profileImage
+                                : UserImg
+                            }
+                            className="homeUserImg "
+                            alt="User Profile pic"
+                          />
+                          &nbsp;
+                          <span className="ms-1 fw-bold">
+                            {item.user.fullname}
+                          </span>
+                        </p>
+                      </div>
+
+                      {/* Renders the post image */}
+                      <img
+                        src={item.image}
+                        className="homePostImg "
+                        alt="Post Image"
+                      />
+                    </div>
+                    <div className=" ms-md-2 homepostDetails ">
+                      <h1 className=" postHeading ">{item.title}</h1>
+                      <div className="p-1 homePostD">
+                        {/* Renders the post description */}
+                        <p className="homePostdesc mb-0">
+                          {parse(`${item.description}`)}
+                        </p>
+                        {/* Renders a button to navigate to the single post page */}
+                        <a
+                          className=" d-lg-block  readmore"
+                          onClick={() =>
+                            navigate(`/singlePost?postid=${item._id}`)
+                          }
+                        >
+                          Read more
+                          <FiExternalLink />
+                        </a>
+                      </div>
                     </div>
                   </div>
                 </div>
