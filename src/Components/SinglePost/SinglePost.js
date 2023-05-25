@@ -51,15 +51,8 @@ function SinglePost() {
 
   // Fetch the post details using the post ID parameter from the URL
   useEffect(() => {
-    // Send JSON Web Token which is stored in LocalStorage for Authorization
-    const token = localStorage.getItem("token");
-
     axios
-      .get(`/posts/${postId}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
+      .get(`/posts/${postId}`)
       .then((res) => {
         // Update the postDetails state variable with the data received from the server
         handlePostDetails(res.data.data);

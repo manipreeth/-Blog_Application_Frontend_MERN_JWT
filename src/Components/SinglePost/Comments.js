@@ -26,15 +26,8 @@ function Comments(props) {
 
   // Fetch comments from server when the component mounts and whenever commentReload changes
   useEffect(() => {
-    // Send JSON Web Token which is stored in LocalStorage for Authorization
-    const token = localStorage.getItem("token");
-
     axios
-      .get(`/posts/${props.postIdentity}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
+      .get(`/posts/${props.postIdentity}`)
       .then((res) => {
         handleComments(res.data.data.comments);
         handleLoginUser(res.data.userId);
