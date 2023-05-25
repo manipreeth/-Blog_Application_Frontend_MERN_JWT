@@ -82,7 +82,7 @@ function MyPosts() {
     );
   }
   return (
-    <div className="d-flex flex-wrap container routeLayout ">
+    <div className="d-flex flex-wrap container routeLayout justify-content-md-between">
       {MyPost.length > 0 ? (
         MyPost.map((value, index) => {
           return (
@@ -108,7 +108,9 @@ function MyPosts() {
               </div>
 
               {/* Displaying the post image */}
-              <img src={value.image ? value.image : TestImg} alt="post pic" />
+              <div className="mypostImg">
+                <img src={value.image ? value.image : TestImg} alt="post pic" />
+              </div>
 
               {/* Displaying the post description using `parse` function to convert HTML string to React components */}
               <div className="mypostDes">{parse(`${value.description}`)}</div>
