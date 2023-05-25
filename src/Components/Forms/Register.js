@@ -93,7 +93,7 @@ function Register() {
             value={registerDetails.fullname}
             name="fullname"
             onChange={(e) => handleRegisterForm(e)}
-            placeholder="Manipreeth"
+            placeholder="Enter your fullname"
             className="mb-30"
             id="name"
             maxLength="15"
@@ -143,7 +143,7 @@ function Register() {
             value={registerDetails.mobile}
             name="mobile"
             onChange={(e) => handleRegisterForm(e)}
-            placeholder="9876543210"
+            placeholder="Enter your mobile number"
             id="mobile"
             className="mb-30"
             size="10"
