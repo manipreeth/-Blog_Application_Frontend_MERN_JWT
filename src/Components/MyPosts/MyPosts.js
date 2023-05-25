@@ -16,6 +16,10 @@ import { FaPen } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import parse from "html-react-parser";
 
+// import components for tooltip from react-bootstrap
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import Tooltip from "react-bootstrap/Tooltip";
+
 // Import Lottie animation dependency
 import Lottie from "lottie-react";
 import LodingAnimation from "../../Assets/LottieAnimations/loading.json";
@@ -73,6 +77,20 @@ function MyPosts() {
       });
   };
 
+  // Edit tooltip
+  const editTooltip = (props) => (
+    <Tooltip id="button-tooltip" {...props}>
+      Edit
+    </Tooltip>
+  );
+
+  // Delete tooltip
+  const deleteTooltip = (props) => (
+    <Tooltip id="button-tooltip" {...props}>
+      Delete
+    </Tooltip>
+  );
+
   if (isLoading) {
     return (
       <div className="d-flex flex-column flex-wrap align-items-center container">
@@ -88,22 +106,35 @@ function MyPosts() {
           return (
             <div className="myposts" key={value._id}>
               <div className="d-flex flex-wrap justify-content-between align-content-center">
-                <h1 className="postHeading">{value.title} </h1>
+                <h1 className="postHeading postTitleSize" title={value.title}>
+                  {value.title}
+                </h1>
+
                 <div>
-                  <button
-                    className="btn p-0 me-1 fw-bolder text-secondary"
-                    title="Edit"
-                    onClick={() => navigate(`/editPost?postid=${value._id}`)}
+                  <OverlayTrigger
+                    placement="bottom"
+                    delay={{ show: 250, hide: 400 }}
+                    overlay={editTooltip}
                   >
-                    <FaPen size="18px" />
-                  </button>
-                  <button
-                    className="btn p-0 fw-bolder text-danger"
-                    title="Delete"
-                    onClick={() => deletePost(value._id)}
+                    <button
+                      className="btn p-0 me-1 fw-bolder text-secondary"
+                      onClick={() => navigate(`/editPost?postid=${value._id}`)}
+                    >
+                      <FaPen size="18px" />
+                    </button>
+                  </OverlayTrigger>
+                  <OverlayTrigger
+                    placement="bottom"
+                    delay={{ show: 250, hide: 400 }}
+                    overlay={deleteTooltip}
                   >
-                    <MdDelete size="20px" />
-                  </button>
+                    <button
+                      className="btn p-0 fw-bolder text-danger"
+                      onClick={() => deletePost(value._id)}
+                    >
+                      <MdDelete size="20px" />
+                    </button>
+                  </OverlayTrigger>
                 </div>
               </div>
 
