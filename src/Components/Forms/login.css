@@ -215,7 +215,7 @@
 @media Screen and (min-width: 1440px) {
   /* These styles apply to the login section */
   .login {
-    padding: 60px 40px;
+    padding: 55px 40px;
   }
 
   /* These styles apply to the blog icon */
