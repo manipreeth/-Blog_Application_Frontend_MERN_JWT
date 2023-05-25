@@ -76,7 +76,7 @@ function PostActions(props) {
         // setLiked(!liked);
         handlePostDetails(res.data.data);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => alert(err.response.data.message));
   };
 
   // function to unlike the post
@@ -99,7 +99,7 @@ function PostActions(props) {
         // setLiked(!liked);
         handlePostDetails(res.data.data);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => alert(err.response.data.message));
   };
   return (
     <div className="d-flex align-items-center">

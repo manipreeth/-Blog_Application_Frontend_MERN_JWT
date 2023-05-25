@@ -53,7 +53,7 @@ function MyPosts() {
       })
       .catch((err) => {
         setLoading(false);
-        console.log(err.response.data.message);
+        alert(err.response.data.message);
       });
   }, [postDeleted]);
 
@@ -73,7 +73,7 @@ function MyPosts() {
         alert(res.data.data);
       })
       .catch((err) => {
-        console.log(err.message);
+        alert(err.response.data.message);
       });
   };
 

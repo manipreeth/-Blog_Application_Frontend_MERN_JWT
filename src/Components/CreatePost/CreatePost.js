@@ -74,7 +74,7 @@ function CreatePost() {
         });
         setDescription("");
         handlePostbtnLabel(true);
-        // navigate("/posts");
+        navigate("/posts");
         alert(res.data.status);
       })
       .catch((err) => {

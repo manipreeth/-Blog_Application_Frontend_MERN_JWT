@@ -58,7 +58,7 @@ function SinglePost() {
         handlePostDetails(res.data.data);
         setUserid(res.data.userId);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => alert(err.response.data.message));
   }, []);
 
   // Declaring second useEffect to track likes of the post

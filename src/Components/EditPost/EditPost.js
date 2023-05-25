@@ -52,7 +52,7 @@ function EditPost() {
         handlePostDetails(res.data.data);
         setDescription(res.data.data.description);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => alert(err.response.data.message));
   }, []);
 
   const handleSubmit = (e) => {

@@ -41,7 +41,7 @@ function NavigationBar() {
         handleNavState(!navState);
         navigate("/");
       })
-      .catch((err) => console.log(err));
+      .catch((err) => alert(err.response.data.message));
   };
 
   // Render the NavigationBar component

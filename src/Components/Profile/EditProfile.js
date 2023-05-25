@@ -66,11 +66,8 @@ function EditProfile(props) {
       })
       .catch((err) => {
         handleBtnLabel(!btnlabel);
-        // console.log(err);
         handleBtnLabel(true);
-
-        // alert(err.response.data.message);
-        console.log(err);
+        alert(err.response.data.message);
       });
   };
 

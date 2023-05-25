@@ -44,7 +44,7 @@ const OtpForm = () => {
         handleNavState(!navState);
         navigate("/");
       })
-      .catch((err) => alert(err.message));
+      .catch((err) => alert(err.response.data.message));
   };
 
   return (

@@ -32,7 +32,7 @@ function Comments(props) {
         handleComments(res.data.data.comments);
         handleLoginUser(res.data.userId);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => alert(err.response.data.message));
   }, [commentReload]);
 
   const Edit = (value, index, id) => {

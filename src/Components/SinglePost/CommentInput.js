@@ -57,7 +57,7 @@ function CommentInput({ postIdentity }) {
         })
 
         .catch((err) => {
-          console.log(err);
+          alert(err.response.data.message);
         });
     } else {
       alert(" Enter your comment");
@@ -84,10 +84,9 @@ function CommentInput({ postIdentity }) {
         handleCommentReload(!commentReload);
         handleUpdateBtn(!updateBtn);
         handleComment("");
-        console.log(res.data);
       })
       .catch((err) => {
-        console.log(err);
+        alert(err.response.data.message);
       });
   };
 

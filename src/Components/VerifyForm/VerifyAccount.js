@@ -41,7 +41,7 @@ const VerifyAccount = () => {
       .then((res) => {
         navigate("/login");
       })
-      .catch((err) => alert(err.message));
+      .catch((err) => alert(err.response.data.message));
   };
 
   return (
