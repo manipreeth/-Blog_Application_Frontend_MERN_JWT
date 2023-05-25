@@ -24,8 +24,6 @@ const OtpForm = () => {
   const handleOtpSubmit = async (e) => {
     e.preventDefault();
 
-    console.log(otp);
-
     // Send JSON Web Token which is stored in LocalStorage for Authorization
     const token = localStorage.getItem("token");
 

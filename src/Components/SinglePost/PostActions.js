@@ -28,8 +28,6 @@ function PostActions(props) {
   const [alreadyLiked, setAlreadyLiked] = Details.likeStatus;
   const [likeCount, setLikeCount] = Details.likesCount;
 
-  console.log("alreadyLiked-top", alreadyLiked);
-
   // Function to copy link to clipboard
   const copyToClipboard = (link) => {
     navigator.clipboard.writeText(link);
@@ -72,8 +70,6 @@ function PostActions(props) {
         }
       )
       .then((res) => {
-        console.log("----like---", res.data);
-        // setLiked(!liked);
         handlePostDetails(res.data.data);
       })
       .catch((err) => alert(err.response.data.message));
@@ -95,8 +91,6 @@ function PostActions(props) {
         }
       )
       .then((res) => {
-        console.log("----Unlike----", res.data);
-        // setLiked(!liked);
         handlePostDetails(res.data.data);
       })
       .catch((err) => alert(err.response.data.message));
@@ -126,7 +120,6 @@ function PostActions(props) {
           {alreadyLiked ? (
             <>
               {/* Unlike Post Button */}
-              {console.log("Inside---Unlike--", alreadyLiked)}
               <OverlayTrigger
                 placement="right"
                 delay={{ show: 250, hide: 400 }}
@@ -146,7 +139,6 @@ function PostActions(props) {
           ) : (
             <>
               {/* Like Post Button */}
-              {console.log("Inside---Like--", alreadyLiked)}
               <OverlayTrigger
                 placement="right"
                 delay={{ show: 250, hide: 400 }}
