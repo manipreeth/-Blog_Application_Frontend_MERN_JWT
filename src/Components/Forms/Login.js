@@ -46,7 +46,6 @@ function LoginForm() {
 
         // After storing token navigate to validate otp
         navigate("/otpvalidation");
-        console.log(res);
       })
       .catch((err) => {
         // Display "Logging in..." in login button

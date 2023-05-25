@@ -52,9 +52,8 @@ function Register() {
         })
         .then((res) => {
           handleregisterbtnLabel(false);
-          console.log(res);
           // redirecting to verify account page on successful registration
-          navigate(`/verifyaccount?userid=${res.data.data._id}`);
+          navigate(`/verifyaccount?userid=${res.data.data}`);
         })
         .catch((err) => {
           handleregisterbtnLabel(false);

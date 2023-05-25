@@ -43,9 +43,8 @@ const OtpForm = () => {
       .then((res) => {
         handleNavState(!navState);
         navigate("/");
-        console.log(res);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => alert(err.message));
   };
 
   return (
