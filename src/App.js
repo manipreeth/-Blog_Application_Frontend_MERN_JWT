@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Navbar from "./Components/Routers/Navbar";
-import PathConfig from "./Components/Routers/NavConfig";
+import NavConfig from "./Components/Routers/NavConfig";
 
 export const ParentContext = React.createContext();
 
@@ -9,7 +9,7 @@ export const ParentContext = React.createContext();
  * initializing the application and rendering the routes. It consists of three useStates
  * exported using context in React, which provide global state management for the app.
  *
- * The component wraps the `PathConfig` component, which contains all of the routes and their corresponding
+ * The component wraps the `NavConfig` component, which contains all of the routes and their corresponding
  * components. Each route is defined in its own file in the `src/Components` directory, making it easy
  * to maintain and update the routes as necessary.
  *
@@ -39,7 +39,7 @@ function App() {
         }}
       >
         <Navbar />
-        <PathConfig />
+        <NavConfig />
       </ParentContext.Provider>
     </div>
   );
