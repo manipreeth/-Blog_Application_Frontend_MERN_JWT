@@ -82,7 +82,7 @@ function MyPosts() {
     );
   }
   return (
-    <div className="d-flex flex-wrap container routeLayout justify-content-md-between">
+    <div className="d-flex flex-wrap container routeLayout justify-content-md-between justify-content-xl-start">
       {MyPost.length > 0 ? (
         MyPost.map((value, index) => {
           return (
