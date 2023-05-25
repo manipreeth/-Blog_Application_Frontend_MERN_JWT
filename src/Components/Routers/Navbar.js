@@ -40,7 +40,6 @@ function NavigationBar() {
         localStorage.removeItem("token");
         handleNavState(!navState);
         navigate("/");
-        window.location.reload();
       })
       .catch((err) => console.log(err));
   };
@@ -50,7 +49,7 @@ function NavigationBar() {
     <div className="navigationBar">
       <Navbar key="lg" expand="lg" className="mb-5">
         <Container fluid>
-          <Navbar.Brand href="/">
+          <Navbar.Brand>
             <span className="navLogo">
               <img src={BSLogo} width="40px" height="40px" alt="coderblog" />
               <span className="ms-1 text-white ">BlogoSphere</span>

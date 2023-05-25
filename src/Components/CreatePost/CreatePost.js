@@ -74,6 +74,7 @@ function CreatePost() {
         });
         setDescription("");
         handlePostbtnLabel(true);
+        // navigate("/posts");
         alert(res.data.status);
       })
       .catch((err) => {
@@ -84,11 +85,11 @@ function CreatePost() {
   };
 
   return (
-    <div className="container routeLayout p-3 mt-md-3 createPost">
+    <div className="container routeLayout p-3  createPost">
       {/* The post creation form */}
       <Form onSubmit={handleSubmit}>
         {/* Form input for post title */}
-        <Form.Group className=" mb-4">
+        <Form.Group className=" mb-4 mb-md-3">
           <Form.Label htmlFor="title">Post Title:</Form.Label>
           <Form.Control
             required
@@ -113,7 +114,7 @@ function CreatePost() {
           />
         </Form.Group>
         {/* Form input for post category */}
-        <Form.Group className=" mb-4">
+        <Form.Group className=" mb-4 mb-md-3">
           <Form.Label htmlFor="category">Post Category:</Form.Label>
           <Form.Select
             required
@@ -126,7 +127,6 @@ function CreatePost() {
             <option value="Agriculture">Agriculture</option>
             <option value="Army">Army</option>
             <option value="HTML">HTML</option>
-            <option value="Node Js">Node Js</option>
             <option value="Bussiness">Bussiness</option>
             <option value="Accounting">Accounting</option>
             <option value="Trading">Trading</option>

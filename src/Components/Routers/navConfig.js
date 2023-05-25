@@ -8,6 +8,7 @@ import Login from "../Forms/Login";
 import SinglePost from "../SinglePost/SinglePost";
 import OtpForm from "../VerifyForm/OtpForm";
 import VerifyAccount from "../VerifyForm/VerifyAccount";
+import EditPost from "../EditPost/EditPost";
 
 // This component defines the routing configuration for the app using the
 //  `Routes` and `Route` components from the `react-router` library.
@@ -28,6 +29,7 @@ function NavConfig() {
         <Route path="singlePost" element={<SinglePost />} />
         <Route path="otpvalidation" element={<OtpForm />} />
         <Route path="verifyaccount" element={<VerifyAccount />} />
+        <Route path="editPost" element={<EditPost />} />
       </Routes>
     </div>
   );

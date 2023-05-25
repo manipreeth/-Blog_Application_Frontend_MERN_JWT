@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import axios from "axios";
 
 import UserImg from "../../Assets/Images/userPic.png";
@@ -26,8 +26,15 @@ function Comments(props) {
 
   // Fetch comments from server when the component mounts and whenever commentReload changes
   useEffect(() => {
+    // Send JSON Web Token which is stored in LocalStorage for Authorization
+    const token = localStorage.getItem("token");
+
     axios
-      .get(`/posts/${props.postIdentity}`)
+      .get(`/posts/${props.postIdentity}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then((res) => {
         handleComments(res.data.data.comments);
         handleLoginUser(res.data.userId);

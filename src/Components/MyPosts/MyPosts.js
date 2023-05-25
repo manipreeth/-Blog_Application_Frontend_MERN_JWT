@@ -29,6 +29,9 @@ function MyPosts() {
   const [MyPost, handleMypost] = useState();
   const [postDeleted, handlePostDel] = useState(false);
 
+  // handle display of loading animation
+  const [isLoading, setLoading] = useState(true);
+
   // Send JSON Web Token which is stored in LocalStorage for Authorization
   const token = localStorage.getItem("token");
 
@@ -41,11 +44,13 @@ function MyPosts() {
         },
       })
       .then((res) => {
-        if (res.data.data.length !== 0) {
-          handleMypost(res.data.data);
-        }
+        setLoading(false);
+        handleMypost(res.data.data);
       })
-      .catch((err) => console.log(err.response.data.message));
+      .catch((err) => {
+        setLoading(false);
+        console.log(err.response.data.message);
+      });
   }, [postDeleted]);
 
   // Using the useNavigate hook to navigate to a different route when clicked
@@ -68,9 +73,17 @@ function MyPosts() {
       });
   };
 
+  if (isLoading) {
+    return (
+      <div className="d-flex flex-column flex-wrap align-items-center container">
+        <Lottie animationData={LodingAnimation} className="loadingAnimation" />
+        <h1 className=" mt-1 ">Loading...</h1>
+      </div>
+    );
+  }
   return (
     <div className="d-flex flex-wrap container routeLayout ">
-      {MyPost ? (
+      {MyPost.length > 0 ? (
         MyPost.map((value, index) => {
           return (
             <div className="myposts" key={value._id}>
@@ -113,43 +126,29 @@ function MyPosts() {
           );
         })
       ) : (
-        <div className="d-flex  flex-column align-items-center">
-          <Lottie
-            animationData={LodingAnimation}
-            className="loadingAnimation"
-          />
-          <h1 className=" mt-1 ">Loading...</h1>
+        <div className="noPosts pb-5">
+          <img src={NoPosts} className="noPostsIcon" />
+          <h3>No Posts Found !</h3>
+
+          {/* If the user login and no posts are created by user then button with label "Make your first post" is displayed;
+                if user login is false then "Login to post" label button is displayed */}
+          {navState ? (
+            <button
+              onClick={() => navigate("/createPost")}
+              className="btn btn-success"
+            >
+              Make your First Post
+            </button>
+          ) : (
+            <button
+              onClick={() => navigate("/login")}
+              className="btn btn-success"
+            >
+              Login to post
+            </button>
+          )}
         </div>
       )}
-
-      {/* If there are no posts, display a message with an image and a button to
-      create a new post if the user is logged in, or to login if not */}
-      {MyPost
-        ? MyPost.length === 0 && (
-            <div className="noPosts pb-5">
-              <img src={NoPosts} className="noPostsIcon" />
-              <h3>No Posts Found !</h3>
-
-              {/* If the user login and no posts are created by user then button with label "Make your first post" is displayed;
-                if user login is false then "Login to post" label button is displayed */}
-              {navState ? (
-                <button
-                  onClick={() => navigate("/createPost")}
-                  className="btn btn-success"
-                >
-                  Make your First Post
-                </button>
-              ) : (
-                <button
-                  onClick={() => navigate("/login")}
-                  className="btn btn-success"
-                >
-                  Login to post
-                </button>
-              )}
-            </div>
-          )
-        : null}
     </div>
   );
 }

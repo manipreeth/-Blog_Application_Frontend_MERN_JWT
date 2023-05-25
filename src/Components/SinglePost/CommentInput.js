@@ -83,6 +83,7 @@ function CommentInput({ postIdentity }) {
       .then((res) => {
         handleCommentReload(!commentReload);
         handleUpdateBtn(!updateBtn);
+        handleComment("");
         console.log(res.data);
       })
       .catch((err) => {

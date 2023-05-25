@@ -107,7 +107,7 @@ const Description = ({ setDescription, initialValue }) => {
   const editor = useEditor(
     {
       extensions: [StarterKit, Underline],
-      content: `${initialValue ? initialValue : null}`,
+      content: `${initialValue ? initialValue : " "}`,
 
       onUpdate: ({ editor }) => {
         const html = editor.getHTML();

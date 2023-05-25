@@ -49,7 +49,7 @@ const OtpForm = () => {
   };
 
   return (
-    <Container className="d-flex justify-content-center align-items-center vh-100">
+    <Container className="d-flex justify-content-center align-items-center my-5">
       <Card className="p-4">
         <Card.Body>
           <h3 className="mb-4">OTP Validation</h3>

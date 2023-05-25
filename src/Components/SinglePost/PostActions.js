@@ -57,16 +57,20 @@ function PostActions(props) {
   );
 
   // function to like the post
-  const likePost = async (id) => {
+  const likePost = (id) => {
     // Send JSON Web Token which is stored in LocalStorage for Authorization
     const token = localStorage.getItem("token");
 
-    await axios
-      .post(`/posts/like/${id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
+    axios
+      .post(
+        `/posts/like/${id}`,
+        { id },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
       .then((res) => {
         console.log("----like---", res.data);
         // setLiked(!liked);
@@ -76,16 +80,20 @@ function PostActions(props) {
   };
 
   // function to unlike the post
-  const unlikePost = async (id) => {
+  const unlikePost = (id) => {
     // Send JSON Web Token which is stored in LocalStorage for Authorization
     const token = localStorage.getItem("token");
 
-    await axios
-      .post(`/posts/unlike/${id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
+    axios
+      .post(
+        `/posts/unlike/${id}`,
+        { id },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
       .then((res) => {
         console.log("----Unlike----", res.data);
         // setLiked(!liked);

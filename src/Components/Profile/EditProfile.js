@@ -14,10 +14,17 @@ function EditProfile(props) {
   const [profile, handleProfile] = context.activeProfile;
   const [btnlabel, handleBtnLabel] = useState(true);
 
+  const [editFields, setEditFields] = useState({
+    mobile: false,
+    username: false,
+    about: false,
+    gender: false,
+    // Add more fields if needed
+  });
   // Function to update user's profile
   const update = () => {
-    const { profileImage, username, about, gender } = formInput;
-    handleBtnLabel(!btnlabel);
+    const { profileImage, mobile, username, about, gender } = formInput;
+    handleBtnLabel(false);
 
     // Send JSON Web Token which is stored in LocalStorage for Authorization
     const token = localStorage.getItem("token");
@@ -27,6 +34,7 @@ function EditProfile(props) {
         "/users/update",
         {
           profileImage: profileImage || userDetails.profileImage,
+          mobile: mobile || userDetails.mobile,
           username: username || userDetails.username,
           about: about || userDetails.about,
           gender: gender || userDetails.gender,
@@ -39,12 +47,30 @@ function EditProfile(props) {
         }
       )
       .then((res) => {
+        setEditFields({
+          mobile: false,
+          username: false,
+          about: false,
+          gender: false,
+        });
+        handleFormInput({
+          profileImage: null,
+          mobile: null,
+          username: "",
+          about: "",
+          gender: "",
+        });
         handleProfile(!profile);
+
+        handleBtnLabel(true);
       })
       .catch((err) => {
         handleBtnLabel(!btnlabel);
         // console.log(err);
-        alert(err.response.data.message);
+        handleBtnLabel(true);
+
+        // alert(err.response.data.message);
+        console.log(err);
       });
   };
 
@@ -55,10 +81,17 @@ function EditProfile(props) {
 
   // Function to handle changes in the other input fields
   const inputHandler = (e) => {
+    const fieldName = e.target.name;
+
     handleFormInput({
       ...formInput,
-      [e.target.name]: e.target.value,
+      [fieldName]: e.target.value,
     });
+
+    setEditFields((prevState) => ({
+      ...prevState,
+      [fieldName]: true,
+    }));
   };
 
   // "Update profile photo by hovering on user pic and clicking the edit option to choose a new photo."
@@ -92,7 +125,9 @@ function EditProfile(props) {
 
         <div className="mt-2">
           <p className="ms-1 mb-0 fw-bolder">{userDetails.fullname}</p>
-          <p className="ms-2 mb-0">{userDetails.username}</p>
+          <p className="ms-2 mb-0">
+            {editFields.username ? formInput.username : userDetails.username}
+          </p>
         </div>
       </div>
 
@@ -122,12 +157,11 @@ function EditProfile(props) {
             Mobile_No:
             <input
               className="p-2 m-1 mt-2 ms-2 bc-orange"
-              type="text"
-              value={userDetails.mobile}
+              type="number"
+              value={editFields.mobile ? formInput.mobile : userDetails.mobile}
               onChange={(e) => inputHandler(e)}
               name="mobile"
-              disabled
-              readOnly
+              maxLength={10}
             />
           </label>
         </div>
@@ -140,8 +174,9 @@ function EditProfile(props) {
           <input
             className="p-2 m-1 bc-orange  ms-2"
             type="username"
+            // value={formInput.username || userDetails.username}
             value={
-              userDetails.username ? userDetails.username : formInput.username
+              editFields.username ? formInput.username : userDetails.username
             }
             aria-label="Disabled input"
             id="username"
@@ -151,12 +186,12 @@ function EditProfile(props) {
         </div>
 
         {/* About section of user */}
-        <div className=" mb-2">
+        <div className=" mb-2 d-md-flex align-items-md-start">
           <label>About:</label>
-          &nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;
           <textarea
-            className="ms-md-5 mb-2 profileAbout bc-orange"
-            value={userDetails.about ? userDetails.about : formInput.about}
+            className="ms-md-4 mb-2 profileAbout bc-orange"
+            value={editFields.about ? formInput.about : userDetails.about}
             onChange={(e) => inputHandler(e)}
             name="about"
           ></textarea>
@@ -166,7 +201,7 @@ function EditProfile(props) {
         <div className=" mb-3">
           <Form.Select
             required
-            value={userDetails.gender ? userDetails.gender : formInput.gender}
+            value={editFields.gender ? formInput.gender : userDetails.gender}
             onChange={(e) => inputHandler(e)}
             name="gender"
             className="d-inline "

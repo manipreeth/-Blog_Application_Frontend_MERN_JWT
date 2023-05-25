@@ -88,9 +88,9 @@ function EditPost() {
   };
 
   return (
-    <div className="container routeLayout p-3 mt-md-3 createPost">
+    <div className="container routeLayout p-3 createPost">
       <Form onSubmit={handleSubmit}>
-        <Form.Group className=" mb-4">
+        <Form.Group className=" mb-4 mb-md-3">
           <Form.Label htmlFor="title">Post Title:</Form.Label>
           <Form.Control
             required
@@ -114,7 +114,7 @@ function EditPost() {
           />
         </Form.Group>
 
-        <Form.Group className=" mb-4">
+        <Form.Group className=" mb-4 mb-md-3">
           <Form.Label htmlFor="category">Post Category:</Form.Label>
           <Form.Select
             required
@@ -143,7 +143,7 @@ function EditPost() {
           <Description
             setDescription={setDescription}
             initialValue={
-              postDetails.description ? postDetails.description : null
+              postDetails.description ? postDetails.description : " "
             }
           />
         </Form.Group>

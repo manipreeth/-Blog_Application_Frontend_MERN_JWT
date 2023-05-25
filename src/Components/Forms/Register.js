@@ -52,6 +52,7 @@ function Register() {
         })
         .then((res) => {
           handleregisterbtnLabel(false);
+          console.log(res);
           // redirecting to verify account page on successful registration
           navigate(`/verifyaccount?userid=${res.data.data._id}`);
         })
@@ -107,7 +108,7 @@ function Register() {
             placeholder="exmaple@xyz.com"
             className="mb-30"
             id="email"
-            maxLength="20"
+            maxLength="50"
             required
           />
           <label htmlFor="pswd">Password</label>
@@ -119,7 +120,7 @@ function Register() {
             placeholder="***************"
             id="pswd"
             className="mb-30"
-            maxLength="13"
+            maxLength="15"
             required
           />
 
@@ -132,7 +133,7 @@ function Register() {
             placeholder="Re-type your password"
             id="confirmPassword"
             className="mb-30"
-            maxLength="13"
+            maxLength="15"
             required
           />
 
@@ -146,7 +147,8 @@ function Register() {
             id="mobile"
             className="mb-30"
             size="10"
-            min="0"
+            minLength={10}
+            maxLength={10}
             required
           />
 

@@ -108,10 +108,10 @@ function Profile() {
               <div>
                 <p>{userDetails.email}</p>
                 <p>
-                  {userDetails.mobile ? userDetails.mobile : formInput.mobile}
+                  {formInput.mobile ? formInput.mobile : userDetails.mobile}
                 </p>
                 <p className="aboutWidth">
-                  {userDetails.about ? userDetails.about : formInput.about}
+                  {formInput.about ? formInput.about : userDetails.about}
                 </p>
               </div>
             </div>

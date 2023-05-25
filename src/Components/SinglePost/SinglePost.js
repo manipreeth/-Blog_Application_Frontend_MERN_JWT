@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./singlePost.css";
 import axios from "axios";
 
@@ -6,6 +6,7 @@ import LoadingImg from "../../Assets/Images/loading.png";
 
 import Comments from "./Comments";
 import CommentInput from "./CommentInput";
+import PostActions from "./PostActions";
 
 // Import useLocation hook from react-router to get the postId from the URL
 import { useLocation } from "react-router";
@@ -18,14 +19,11 @@ import { ParentContext } from "../../App";
 
 // Import lottie dependency and loading animation
 import Lottie from "lottie-react";
-import LodingAnimation from "../../images/loading.json";
+import LodingAnimation from "../../Assets/LottieAnimations/loading.json";
 
 // Create a context for sharing state between child components
 export const commentParent = React.createContext();
 export const postActions = React.createContext();
-
-// import component
-import PostActions from "./PostActions";
 
 function SinglePost() {
   // import navbar state Parent context in App.js
@@ -53,8 +51,15 @@ function SinglePost() {
 
   // Fetch the post details using the post ID parameter from the URL
   useEffect(() => {
+    // Send JSON Web Token which is stored in LocalStorage for Authorization
+    const token = localStorage.getItem("token");
+
     axios
-      .get(`/posts/${postId}`)
+      .get(`/posts/${postId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then((res) => {
         // Update the postDetails state variable with the data received from the server
         handlePostDetails(res.data.data);
