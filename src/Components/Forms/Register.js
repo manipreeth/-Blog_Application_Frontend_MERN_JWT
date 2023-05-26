@@ -52,26 +52,21 @@ function Register() {
         })
         .then((res) => {
           handleregisterbtnLabel(false);
-          // redirecting to verify account page on successful registration
-          navigate(`/verifyaccount?userid=${res.data.data}`);
+          if (res.data.data) {
+            // redirecting to verify account page on successful registration
+            navigate(`/verifyaccount?userid=${res.data.data}`);
+          } else if (res.data.userId) {
+            alert("Please Verify Your Account By OTP Sent To Your Mail");
+            navigate(`/verifyaccount?userid=${res.data.userId}`);
+          } else {
+            alert("Something went wrong");
+          }
         })
         .catch((err) => {
           handleregisterbtnLabel(false);
 
-          const message = err.response.data.message;
-          const messageBreakdown = message.split(" ");
-          const id = messageBreakdown[3];
-
-          if (
-            `${messageBreakdown[0]},${messageBreakdown[1]},${messageBreakdown[2]}` ===
-            "Verify,your,account"
-          ) {
-            alert("Please Verify Your Account By OTP Sent To Your Mail");
-            navigate(`/verifyaccount?userid=${id}`);
-          } else {
-            // displaying error message on failed registration
-            alert(err.response.data.message);
-          }
+          // displaying error message on failed registration
+          alert(err.response.data.message);
         });
     }
   };

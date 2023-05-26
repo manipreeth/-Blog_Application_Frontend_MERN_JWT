@@ -39,36 +39,30 @@ function LoginForm() {
         password: loginDetails.password,
       })
       .then((res) => {
-        // After successful login
-        // Store token into localStorage
-        const token = res.data.token;
-        localStorage.setItem("token", token);
+        if (res.data.token) {
+          // After successful login
+          // Store token into localStorage
+          const token = res.data.token;
+          localStorage.setItem("token", token);
 
-        // After storing token navigate to validate otp
-        navigate("/otpvalidation");
+          // After storing token navigate to validate otp
+          navigate("/otpvalidation");
+        } else if (res.data.userId) {
+          // Display an alert asking the user to verify their account
+          alert("Please Verify Your Account By OTP Sent To Your Mail");
+
+          // Redirect the user to the verify account page, passing the user ID as a query parameter
+          navigate(`/verifyaccount?userid=${res.data.userId}`);
+        } else {
+          alert("Something went wrong");
+        }
       })
       .catch((err) => {
         // Display "Logging in..." in login button
         setLoginBtnLabel(true);
 
-        const message = err.response.data.message;
-        const messageBreakdown = message.split(" ");
-        const id = messageBreakdown[3];
-
-        // Check if the error message indicates that the user needs to verify their account
-        if (
-          `${messageBreakdown[0]},${messageBreakdown[1]},${messageBreakdown[2]}` ===
-          "Verify,your,account"
-        ) {
-          // Display an alert asking the user to verify their account
-          alert("Please Verify Your Account By OTP Sent To Your Mail");
-
-          // Redirect the user to the verify account page, passing the user ID as a query parameter
-          navigate(`/verifyaccount?userid=${id}`);
-        } else {
-          // Alert the original error message
-          alert(err.response.data.message);
-        }
+        // Alert the original error message
+        alert(err.response.data.message);
       });
   };
 
