@@ -39,14 +39,10 @@ function LoginForm() {
         password: loginDetails.password,
       })
       .then((res) => {
-        if (res.data.token) {
+        if (res.data.user) {
           // After successful login
-          // Store token into localStorage
-          const token = res.data.token;
-          localStorage.setItem("token", token);
-
-          // After storing token navigate to validate otp
-          navigate("/otpvalidation");
+          // Redirect to validate otp page
+          navigate(`/otpvalidation?userid=${res.data.user}`);
         } else if (res.data.userId) {
           // Display an alert asking the user to verify their account
           alert("Please Verify Your Account By OTP Sent To Your Mail");
