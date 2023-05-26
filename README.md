@@ -65,7 +65,7 @@ The Blog Application includes the following features:
 - Clicking the share URL button allows users to copy the post URL for sharing.</br>
   </br>
 
-  📱 Responsive Design:</br>
+📱 Responsive Design:</br>
 
 - The application is designed to provide optimal viewing on desktop and mobile devices.</br>
 - The responsive design ensures a consistent user experience across different screen sizes.</br>
