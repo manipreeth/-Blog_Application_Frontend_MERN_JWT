@@ -28,25 +28,26 @@ function Home() {
   // React Router's navigation hook
   const navigate = useNavigate();
 
-  // Fetches post data from the backend API upon component mount
+  // Fetches post data from the backend API upon component mount when navState is true.
   useEffect(() => {
-    // Send JSON Web Token which is stored in LocalStorage for Authorization
-    const token = localStorage.getItem("token");
-
-    axios
-      .get("/posts", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((res) => {
-        const details = res.data.data;
-        handlePost(details);
-      })
-      .catch((err) => {
-        alert(err.response.data.message);
-      });
-  }, []);
+    if (navState) {
+      // Send JSON Web Token which is stored in LocalStorage for Authorization
+      const token = localStorage.getItem("token");
+      axios
+        .get("/posts", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((res) => {
+          const details = res.data.data;
+          handlePost(details);
+        })
+        .catch((err) => {
+          alert(err.response.data.message);
+        });
+    }
+  }, [navState]);
 
   // Render the component with the post data received from the API
   return (
