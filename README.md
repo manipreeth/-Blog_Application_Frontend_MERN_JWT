@@ -19,6 +19,73 @@ The key features of the Blog Application are:
 💬 Commenting functionality
 📱 Responsive design for optimal viewing on desktop and mobile devices
 
+## Features 🚀
+
+The Blog Application includes the following features:
+
+🔒 OTP Functionality:</br>
+
+When a new user registers, an OTP is sent to their email address for verification.</br>
+Users need to enter the OTP to complete the email verification process.</br>
+For login authorization, a OTP is sent to the user's email, and they need to enter it to log in.</br>
+</br>
+🔐 User Authentication and Authorization: </br>
+
+User authentication and authorization using _JSON Web Token (JWT)_.</br>
+Users can create an account, log in, and remain logged in with a JWT stored in local storage.</br>
+JWT expires after 24 hours, requiring users to log in again.</br>
+</br>
+
+📝 Create and Publish Blog Posts:</br>
+
+Authors can create and publish blog posts.</br>
+Users can provide a post title, image, category, and description.</br>
+Posts are saved and displayed in the home section.</br>
+</br>
+
+💬 Commenting Functionality:</br>
+
+Users can comment on blog posts.</br>
+Comments are displayed below each post.</br>
+Users can edit and delete their own comments.</br>
+</br>
+
+👍 Liking Functionality:</br>
+
+Users can like and unlike posts.</br>
+Like status is displayed on each post.</br>
+</br>
+
+✏️ Edit Posts:</br>
+
+Users can edit their own posts.</br>
+The editing feature allows users to update the post title, image, category, and description.</br>
+</br>
+
+🗑️ Delete Posts:</br>
+
+Users can delete their own posts.</br>
+The delete option removes the post permanently.</br>
+</br>
+
+📤 Share URL Button:</br>
+
+Users can share the URL of a post.</br>
+Clicking the share URL button allows users to copy the post URL for sharing.</br>
+</br>
+
+📧 Email Verification:</br>
+
+New user registrations require email verification through OTP.</br>
+Users receive an OTP via email to verify their email address.</br>
+</br>
+
+📱 Responsive Design:</br>
+
+The application is designed to provide optimal viewing on desktop and mobile devices.</br>
+The responsive design ensures a consistent user experience across different screen sizes.</br>
+</br>
+
 ## Installation 🔧
 
 To install the Blog Application, follow these steps:
@@ -26,7 +93,6 @@ To install the Blog Application, follow these steps:
 - Clone the repository to your local machine.
 - Navigate to the root directory of the project in the terminal.
 - Run the command npm install to install all required dependencies.
-- Create a .env file in the root directory and add the necessary environment variables.
 - Start the application by running the command npm start.
 
 ## Usage 📋
