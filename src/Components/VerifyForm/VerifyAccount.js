@@ -10,7 +10,6 @@ const VerifyAccount = () => {
 
   const search = useLocation().search;
   const userId = new URLSearchParams(search).get("userid");
-  console.log(userId);
 
   const handleOtpChange = (e) => {
     const { value } = e.target;
@@ -24,31 +23,24 @@ const VerifyAccount = () => {
   const handleOtpSubmit = async (e) => {
     e.preventDefault();
 
-    // Send JSON Web Token which is stored in LocalStorage for Authorization
-    const token = localStorage.getItem("token");
-
     // Handle OTP validation logic here
     await axios
-      .post(
-        `/users/verifyEmail/${userId}`,
-        { otp: otp },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      )
+      .post(`/users/verifyEmail/${userId}`, { otp: otp })
       .then((res) => {
+        alert("Your Account Registered Successfully. Please Login!");
         navigate("/login");
       })
-      .catch((err) => alert(err.response.data.message));
+      .catch((err) => {
+        alert(err.response.data.message);
+        navigate("/register");
+      });
   };
 
   return (
     <Container className="d-flex justify-content-center align-items-center my-5">
       <Card className="p-4">
         <Card.Body>
-          <h3 className="mb-4">OTP Validation</h3>
+          <h3 className="mb-4">Verify Your Account</h3>
           <Form onSubmit={handleOtpSubmit}>
             <Form.Group controlId="otpInput">
               <Form.Label>Enter OTP (4 digits):</Form.Label>
