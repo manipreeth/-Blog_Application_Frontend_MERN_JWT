@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import axios from "axios";
+import { useLocation } from "react-router-dom";
 
 // Import Contexts
 import { ParentContext } from "../../App";
@@ -28,9 +29,14 @@ function PostActions(props) {
   const [alreadyLiked, setAlreadyLiked] = Details.likeStatus;
   const [likeCount, setLikeCount] = Details.likesCount;
 
+  // Get Current URL
+  const location = useLocation();
+  const currentURL = `${window.location.origin}${location.pathname}${location.search}`;
+
   // Function to copy link to clipboard
   const copyToClipboard = (link) => {
     navigator.clipboard.writeText(link);
+    alert("URL Copied !");
   };
 
   // Share URl button tooltip
@@ -100,14 +106,12 @@ function PostActions(props) {
       {/* Share Post URL Button */}
       <OverlayTrigger
         placement="right"
-        delay={{ show: 250, hide: 400 }}
+        delay={{ show: 250, hide: 200 }}
         overlay={shareURLTooltip}
       >
         <span
           className="px-3 py-1 actionBtns"
-          onClick={() =>
-            copyToClipboard(`http://localhost:3000/singlePost?postid=${postId}`)
-          }
+          onClick={() => copyToClipboard(currentURL)}
         >
           Share URL &nbsp;
           <FiShare2 />
