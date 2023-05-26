@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { ParentContext } from "../../App";
@@ -24,6 +24,14 @@ function CreatePost() {
 
   // State variable for the label of the post button
   const [postbtnLabel, handlePostbtnLabel] = useState(true);
+
+  // Check if user is logged in or not
+  useEffect(() => {
+    if (!navState) {
+      navigate("/login"); // Navigate to the login route if user is not logged in
+      return; // Stop further execution of the code
+    }
+  }, []);
 
   // Handle the change of the post image (Event handler for file input)
   const changeHandler = (e) => {

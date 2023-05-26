@@ -41,6 +41,11 @@ function MyPosts() {
 
   // Using the useEffect hook to fetch the data from the backend API and update the state of `MyPost` when `postDeleted` is changed
   useEffect(() => {
+    if (!navState) {
+      navigate("/login"); // Navigate to the login route if user is not logged in
+      return; // Stop further execution of the code
+    }
+
     axios
       .get("/users/posts", {
         headers: {

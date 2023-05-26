@@ -39,6 +39,10 @@ function EditPost() {
   };
 
   useEffect(() => {
+    if (!navState) {
+      navigate("/login"); // Navigate to the login route if user is not logged in
+      return; // Stop further execution of the code
+    }
     // Send JSON Web Token which is stored in LocalStorage for Authorization
     const token = localStorage.getItem("token");
 
