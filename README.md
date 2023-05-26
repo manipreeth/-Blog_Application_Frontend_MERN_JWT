@@ -65,6 +65,12 @@ The Blog Application includes the following features:
 - Clicking the share URL button allows users to copy the post URL for sharing.</br>
   </br>
 
+  📱 Responsive Design:</br>
+
+- The application is designed to provide optimal viewing on desktop and mobile devices.</br>
+- The responsive design ensures a consistent user experience across different screen sizes.</br>
+  </br>
+
 ### Registration and Email Verification
 
 🔐 When a new user registers with the Blog Application using their email address, an OTP (One-Time Password) is sent to the registered email for verification.</br>
@@ -82,14 +88,9 @@ The Blog Application includes the following features:
 📧 On the "Verify Email" page, the user will be prompted to check their email inbox for a verification link or OTP.</br>
 
 🔑 After the user verifies their email address, they will be able to proceed with the OTP verification process to authorize their login.</br>
+</br>
 
-- These additional features enhance the user registration and login processes, ensuring that users can complete the email verification step and seamlessly access their accounts. It also provides a streamlined experience for users who may have previously registered but did not complete the verification process.
-
-📱 Responsive Design:</br>
-
-- The application is designed to provide optimal viewing on desktop and mobile devices.</br>
-- The responsive design ensures a consistent user experience across different screen sizes.</br>
-  </br>
+These additional features enhance the user registration and login processes, ensuring that users can complete the email verification step and seamlessly access their accounts. It also provides a streamlined experience for users who may have previously registered but did not complete the verification process.
 
 ## Installation 🔧
 
