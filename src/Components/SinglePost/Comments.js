@@ -93,7 +93,7 @@ function Comments(props) {
                       />
                       <p className="ms-2 fw-bold mb-0">{value.user.fullname}</p>
                     </div>
-                    <small className="m-2">{FormatDate(value.createdAt)}</small>
+                    <small className="m-2">{FormatDate(value.updatedAt)}</small>
                   </div>
                   <p className="mt-1 ms-5 mb-0 comment">{value.message}</p>
                   {loginUser === value.user._id && (
