@@ -30,7 +30,7 @@ function NavigationBar() {
     // Send JSON Web Token which is stored in LocalStorage for Authorization
     const token = localStorage.getItem("token");
     axios
-      .get("/users/logout", {
+      .get("https://blog-application-backend-5dvk.onrender.com/users/logout", {
         // Set Authorization header to include the token
         headers: {
           Authorization: `Bearer ${token}`,
