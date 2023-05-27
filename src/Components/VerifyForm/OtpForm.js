@@ -11,6 +11,7 @@ const OtpForm = () => {
 
   const navigate = useNavigate();
   const [otp, setOtp] = useState("");
+  const [btnClick, setBtnClick] = useState(false);
 
   const search = useLocation().search;
   const userId = new URLSearchParams(search).get("userid");
@@ -26,21 +27,30 @@ const OtpForm = () => {
 
   const handleOtpSubmit = async (e) => {
     e.preventDefault();
+    setBtnClick(true);
 
     // Handle OTP validation logic here
     await axios
-      .post(`/users/verifyotp/${userId}`, { otp: otp })
+      .post(
+        `https://blog-application-backend-5dvk.onrender.com/users/verifyotp/${userId}`,
+        { otp: otp }
+      )
       .then((res) => {
         if (res.data.token) {
+          setBtnClick(false);
           localStorage.setItem("token", res.data.token);
           handleNavState(!navState);
           navigate("/");
         } else {
+          setBtnClick(false);
           alert("Something Went Wrong");
           navigate("/");
         }
       })
-      .catch((err) => alert(err.response.data.message));
+      .catch((err) => {
+        setBtnClick(false);
+        alert(err.response.data.message);
+      });
   };
 
   return (
@@ -60,9 +70,20 @@ const OtpForm = () => {
                 required
               />
             </Form.Group>
-            <Button variant="primary" type="submit" className="w-100 mt-4">
-              Validate OTP
-            </Button>
+            {btnClick ? (
+              <Button
+                variant="secondary"
+                type="submit"
+                disabled={true}
+                className="w-100 mt-4"
+              >
+                Validating...
+              </Button>
+            ) : (
+              <Button variant="primary" type="submit" className="w-100 mt-4">
+                Verify & Procced
+              </Button>
+            )}
           </Form>
         </Card.Body>
       </Card>

@@ -7,6 +7,7 @@ import { useLocation, useNavigate } from "react-router";
 const VerifyAccount = () => {
   const navigate = useNavigate();
   const [otp, setOtp] = useState("");
+  const [btnClick, setBtnClick] = useState(false);
 
   const search = useLocation().search;
   const userId = new URLSearchParams(search).get("userid");
@@ -22,15 +23,22 @@ const VerifyAccount = () => {
 
   const handleOtpSubmit = async (e) => {
     e.preventDefault();
+    setBtnClick(true);
 
     // Handle OTP validation logic here
     await axios
-      .post(`/users/verifyEmail/${userId}`, { otp: otp })
+      .post(
+        `https://blog-application-backend-5dvk.onrender.com/users/verifyEmail/${userId}`,
+        { otp: otp }
+      )
       .then((res) => {
+        setBtnClick(false);
+
         alert("Your Account Registered Successfully. Please Login!");
         navigate("/login");
       })
       .catch((err) => {
+        setBtnClick(false);
         alert(err.response.data.message);
         navigate("/register");
       });
@@ -53,9 +61,21 @@ const VerifyAccount = () => {
                 required
               />
             </Form.Group>
-            <Button variant="primary" type="submit" className="w-100 mt-4">
-              Validate OTP
-            </Button>
+
+            {btnClick ? (
+              <Button
+                variant="primary"
+                disabled={true}
+                type="submit"
+                className="w-100 mt-4"
+              >
+                Validating...
+              </Button>
+            ) : (
+              <Button variant="primary" type="submit" className="w-100 mt-4">
+                Verify & Procced
+              </Button>
+            )}
           </Form>
         </Card.Body>
       </Card>
