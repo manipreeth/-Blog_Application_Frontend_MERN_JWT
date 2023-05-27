@@ -19,6 +19,7 @@ function Register() {
 
   // declaring state variables to manage button label and loader
   const [registerbtnLabel, handleregisterbtnLabel] = useState(false);
+  const [btnClicked, setBtnClicked] = useState(false);
 
   // handling user input data and updating state variables
   const handleRegisterForm = (e) => {
@@ -31,6 +32,7 @@ function Register() {
   // Handle the form submission
   const Register = (event) => {
     event.preventDefault();
+    setBtnClicked(true);
 
     const { fullname, email, password, confirmPassword, mobile } =
       registerDetails;
@@ -44,14 +46,19 @@ function Register() {
     } else {
       // making post request to register user
       axios
-        .post("/users/register", {
-          fullname: fullname,
-          email: email,
-          password: password,
-          mobile: mobile,
-        })
+        .post(
+          "https://blog-application-backend-5dvk.onrender.com/users/register",
+          {
+            fullname: fullname,
+            email: email,
+            password: password,
+            mobile: mobile,
+          }
+        )
         .then((res) => {
+          setBtnClicked(false);
           handleregisterbtnLabel(false);
+
           if (res.data.data) {
             // redirecting to verify account page on successful registration
             navigate(`/verifyaccount?userid=${res.data.data}`);
@@ -63,6 +70,7 @@ function Register() {
           }
         })
         .catch((err) => {
+          setBtnClicked(false);
           handleregisterbtnLabel(false);
 
           // displaying error message on failed registration
@@ -120,7 +128,7 @@ function Register() {
 
           <label htmlFor="confirmPassword">Confirm Password</label>
           <input
-            type="text"
+            type="password"
             value={registerDetails.confirmPassword}
             name="confirmPassword"
             onChange={(e) => handleRegisterForm(e)}
@@ -133,16 +141,14 @@ function Register() {
 
           <label htmlFor="mobile">Mobile Number</label>
           <input
-            type="number"
+            type="tel"
             value={registerDetails.mobile}
             name="mobile"
             onChange={(e) => handleRegisterForm(e)}
             placeholder="Enter your mobile number"
             id="mobile"
             className="mb-30"
-            size="10"
-            minLength={10}
-            maxLength={10}
+            maxLength="10"
             required
           />
 
@@ -151,7 +157,7 @@ function Register() {
           registerDetails.password &&
           registerDetails.confirmPassword &&
           registerDetails.mobile ? (
-            <button onClick={Register}>
+            <button onClick={Register} disabled={btnClicked}>
               {registerbtnLabel ? "Setting up your space..." : "Register"}
             </button>
           ) : (
