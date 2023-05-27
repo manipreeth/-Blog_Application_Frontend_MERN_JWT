@@ -14,24 +14,29 @@ function EditProfile(props) {
   const [profile, handleProfile] = context.activeProfile;
   const [btnlabel, handleBtnLabel] = useState(true);
 
+  // Check if user clicked the button
+  const [btnClicked, setBtnClicked] = useState(false);
+
+  // Check if user edited a field.
   const [editFields, setEditFields] = useState({
     mobile: false,
     username: false,
     about: false,
     gender: false,
-    // Add more fields if needed
   });
+
   // Function to update user's profile
   const update = () => {
     const { profileImage, mobile, username, about, gender } = formInput;
     handleBtnLabel(false);
+    setBtnClicked(true);
 
     // Send JSON Web Token which is stored in LocalStorage for Authorization
     const token = localStorage.getItem("token");
 
     axios
       .put(
-        "/users/update",
+        "https://blog-application-backend-5dvk.onrender.com/users/update",
         {
           profileImage: profileImage || userDetails.profileImage,
           mobile: mobile || userDetails.mobile,
@@ -61,13 +66,17 @@ function EditProfile(props) {
           gender: "",
         });
         handleProfile(!profile);
-
+        setBtnClicked(false);
         handleBtnLabel(true);
       })
       .catch((err) => {
-        handleBtnLabel(!btnlabel);
+        setBtnClicked(false);
         handleBtnLabel(true);
-        alert(err.response.data.message);
+        if (
+          err.response.data.message ==
+          "Cannot read property 'path' of undefined"
+        )
+          alert("Please reupload your profile image!");
       });
   };
 
@@ -123,7 +132,9 @@ function EditProfile(props) {
         <div className="mt-2">
           <p className="ms-1 mb-0 fw-bolder">{userDetails.fullname}</p>
           <p className="ms-2 mb-0">
-            {editFields.username ? formInput.username : userDetails.username}
+            {formInput.username || editFields.username
+              ? formInput.username
+              : userDetails.username}
           </p>
         </div>
       </div>
@@ -154,11 +165,16 @@ function EditProfile(props) {
             Mobile_No:
             <input
               className="p-2 m-1 mt-2 ms-2 bc-orange"
-              type="number"
-              value={editFields.mobile ? formInput.mobile : userDetails.mobile}
+              type="tel"
+              value={
+                formInput.mobile || editFields.mobile
+                  ? formInput.mobile
+                  : userDetails.mobile
+              }
               onChange={(e) => inputHandler(e)}
               name="mobile"
-              maxLength={10}
+              minLength="10"
+              maxLength="10"
             />
           </label>
         </div>
@@ -171,9 +187,10 @@ function EditProfile(props) {
           <input
             className="p-2 m-1 bc-orange  ms-2"
             type="username"
-            // value={formInput.username || userDetails.username}
             value={
-              editFields.username ? formInput.username : userDetails.username
+              formInput.username || editFields.username
+                ? formInput.username
+                : userDetails.username
             }
             aria-label="Disabled input"
             id="username"
@@ -188,7 +205,11 @@ function EditProfile(props) {
           &nbsp;&nbsp;&nbsp;
           <textarea
             className="ms-md-4 mb-2 profileAbout bc-orange"
-            value={editFields.about ? formInput.about : userDetails.about}
+            value={
+              formInput.about || editFields.about
+                ? formInput.about
+                : userDetails.about
+            }
             onChange={(e) => inputHandler(e)}
             name="about"
           ></textarea>
@@ -198,7 +219,11 @@ function EditProfile(props) {
         <div className=" mb-3">
           <Form.Select
             required
-            value={editFields.gender ? formInput.gender : userDetails.gender}
+            value={
+              formInput.gender || editFields.gender
+                ? formInput.gender
+                : userDetails.gender
+            }
             onChange={(e) => inputHandler(e)}
             name="gender"
             className="d-inline "
@@ -210,7 +235,11 @@ function EditProfile(props) {
           </Form.Select>
         </div>
       </div>
-      <button className="btn btn-primary px-5 ms-5 mb-2" onClick={update}>
+      <button
+        className="btn btn-primary px-5 ms-5 mb-2"
+        onClick={update}
+        disabled={btnClicked}
+      >
         {btnlabel ? "Save Changes" : "Updating changes..."}
       </button>
     </div>
