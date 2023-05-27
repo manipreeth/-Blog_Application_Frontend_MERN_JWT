@@ -55,7 +55,6 @@ function SinglePost() {
   useEffect(() => {
     if (!navState) {
       // if user not login then make request to viewPost/:id route and return res
-      console.log(postId);
       axios
         .get(
           `https://blog-application-backend-5dvk.onrender.com/posts/viewPost/${postId}`
