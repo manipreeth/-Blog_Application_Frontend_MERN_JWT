@@ -9,7 +9,7 @@ import CommentInput from "./CommentInput";
 import PostActions from "./PostActions";
 
 // Import useLocation hook from react-router to get the postId from the URL
-import { useLocation } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 
 // Import parse from html-react-parser to parse HTML strings as React components
 import parse from "html-react-parser";
@@ -29,6 +29,8 @@ function SinglePost() {
   // import navbar state Parent context in App.js
   const navstate = useContext(ParentContext);
   const [navState, handleNavState] = navstate.nav;
+
+  const navigate = useNavigate();
 
   const search = useLocation().search; // Get the search string from the URL
   const postId = new URLSearchParams(search).get("postid"); // Get the postId from the search string
@@ -51,8 +53,36 @@ function SinglePost() {
 
   // Fetch the post details using the post ID parameter from the URL
   useEffect(() => {
+    if (!navState) {
+      // if user not login then make request to viewPost/:id route and return res
+      console.log(postId);
+      axios
+        .get(
+          `https://blog-application-backend-5dvk.onrender.com/posts/viewPost/${postId}`
+        )
+        .then((res) => {
+          // Update the postDetails state variable with the data received from the server
+          handlePostDetails(res.data.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+      return;
+    }
+
+    // get token from localStorage
+    const token = localStorage.getItem("token");
+
+    // Set the post ID to the post ID in the URL
     axios
-      .get(`/posts/${postId}`)
+      .get(
+        `https://blog-application-backend-5dvk.onrender.com/posts/${postId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
       .then((res) => {
         // Update the postDetails state variable with the data received from the server
         handlePostDetails(res.data.data);
