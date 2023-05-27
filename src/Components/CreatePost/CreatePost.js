@@ -24,6 +24,7 @@ function CreatePost() {
 
   // State variable for the label of the post button
   const [postbtnLabel, handlePostbtnLabel] = useState(true);
+  const [btnClicked, setBtnClicked] = useState(false);
 
   // Check if user is logged in or not
   useEffect(() => {
@@ -52,6 +53,7 @@ function CreatePost() {
 
     // Update the button label to show loading state
     handlePostbtnLabel(false);
+    setBtnClicked(true);
 
     // Extract the form data to be sent to the server
     const { title, category, postImage } = postForm;
@@ -67,12 +69,16 @@ function CreatePost() {
 
     // Send a POST request to the server to create a new post
     axios
-      .post("/posts", postDetails, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-          Authorization: `Bearer ${token}`,
-        },
-      })
+      .post(
+        "https://blog-application-backend-5dvk.onrender.com/posts",
+        postDetails,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
       .then((res) => {
         // Clear the post form and alert the success status
         handlePostForm({
@@ -81,12 +87,14 @@ function CreatePost() {
           postImage: null,
         });
         setDescription("");
+        setBtnClicked(false);
         handlePostbtnLabel(true);
         navigate("/posts");
         alert(res.data.status);
       })
       .catch((err) => {
         handlePostbtnLabel(true);
+        setBtnClicked(false);
         // Show an alert with the error message on failed creation of the post
         alert(err.response.data.message);
       });
@@ -152,7 +160,7 @@ function CreatePost() {
         </Form.Group>
 
         {navState ? (
-          <Button type="submit">
+          <Button type="submit" disabled={btnClicked}>
             {postbtnLabel ? "Publish" : "Please Wait While publishing..."}
           </Button>
         ) : (
