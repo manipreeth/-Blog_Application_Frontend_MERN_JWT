@@ -3,11 +3,19 @@ import axios from "axios";
 
 import UserImg from "../../Assets/Images/userPic.png";
 import CommentImg from "../../Assets/Images/comment.png";
-import { commentParent } from "./SinglePost";
 import { MdDelete } from "react-icons/md";
 import { FaPen } from "react-icons/fa";
 
+// import contexts from App.js and singlePost
+import { ParentContext } from "../../App";
+import { commentParent } from "./SinglePost";
+
 function Comments(props) {
+  // import navbar state Parent context in App.js
+  const navstate = useContext(ParentContext);
+  const [navState, handleNavState] = navstate.nav;
+
+  // import commentParent context in singlePost.js
   const commentProps = useContext(commentParent);
 
   // Get the comments array and its setter from context
@@ -26,13 +34,39 @@ function Comments(props) {
 
   // Fetch comments from server when the component mounts and whenever commentReload changes
   useEffect(() => {
+    if (!navState) {
+      axios
+        .get(
+          `https://blog-application-backend-5dvk.onrender.com/posts/viewPost/${props.postIdentity}`
+        )
+        .then((res) => {
+          handleComments(res.data.data.comments);
+        })
+        .catch((err) => {
+          alert(err.response.data.message);
+        });
+      return;
+    }
+
+    // get token from localStorage
+    const token = localStorage.getItem("token");
+
     axios
-      .get(`/posts/${props.postIdentity}`)
+      .get(
+        `https://blog-application-backend-5dvk.onrender.com/posts/${props.postIdentity}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
       .then((res) => {
         handleComments(res.data.data.comments);
         handleLoginUser(res.data.userId);
       })
-      .catch((err) => alert(err.response.data.message));
+      .catch((err) => {
+        alert(err.response.data.message);
+      });
   }, [commentReload]);
 
   const Edit = (value, index, id) => {
@@ -48,11 +82,14 @@ function Comments(props) {
     const token = localStorage.getItem("token");
 
     axios
-      .delete(`/comments/${id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
+      .delete(
+        `https://blog-application-backend-5dvk.onrender.com/comments/${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
       .then((res) => {
         comments.splice(index, 1);
         handleComments([...comments]);
