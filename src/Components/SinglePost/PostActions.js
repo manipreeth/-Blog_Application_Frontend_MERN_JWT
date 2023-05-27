@@ -31,7 +31,7 @@ function PostActions(props) {
 
   // Get Current URL
   const location = useLocation();
-  const currentURL = `${window.location.origin}${location.pathname}${location.search}`;
+  const currentURL = `${window.location.origin}/viewPost${location.search}`;
 
   // Function to copy link to clipboard
   const copyToClipboard = (link) => {
@@ -67,7 +67,7 @@ function PostActions(props) {
 
     axios
       .post(
-        `/posts/like/${id}`,
+        `https://blog-application-backend-5dvk.onrender.com/posts/like/${id}`,
         { id },
         {
           headers: {
@@ -88,7 +88,7 @@ function PostActions(props) {
 
     axios
       .post(
-        `/posts/unlike/${id}`,
+        `https://blog-application-backend-5dvk.onrender.com/posts/unlike/${id}`,
         { id },
         {
           headers: {
@@ -109,13 +109,13 @@ function PostActions(props) {
         delay={{ show: 250, hide: 200 }}
         overlay={shareURLTooltip}
       >
-        <span
+        <button
           className="px-3 py-1 actionBtns"
           onClick={() => copyToClipboard(currentURL)}
         >
           Share URL &nbsp;
           <FiShare2 />
-        </span>
+        </button>
       </OverlayTrigger>
 
       {/* Display Like and Unlike Button only when user Login */}
