@@ -26,17 +26,12 @@ function EditPost() {
   });
 
   const [postbtnLabel, handlePostbtnLabel] = useState(true);
+  const [btnClicked, setBtnClicked] = useState(false);
 
-  const changeHandler = (e) => {
-    handlePostForm({ ...postForm, [e.target.name]: e.target.files[0] });
-  };
-
-  const inputHandler = (e) => {
-    handlePostForm({
-      ...postForm,
-      [e.target.name]: e.target.value,
-    });
-  };
+  // Check if user edited a field.
+  const [editFields, setEditFields] = useState({
+    title: false,
+  });
 
   useEffect(() => {
     if (!navState) {
@@ -47,11 +42,14 @@ function EditPost() {
     const token = localStorage.getItem("token");
 
     axios
-      .get(`/posts/${postId}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
+      .get(
+        `https://blog-application-backend-5dvk.onrender.com/posts/${postId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
       .then((res) => {
         handlePostDetails(res.data.data);
         setDescription(res.data.data.description);
@@ -61,6 +59,8 @@ function EditPost() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setBtnClicked(true);
+
     const { title, category, postImage } = postForm;
     handlePostbtnLabel(!postbtnLabel);
 
@@ -75,20 +75,47 @@ function EditPost() {
     const token = localStorage.getItem("token");
 
     axios
-      .put(`/posts/${postId}`, Details, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-          Authorization: `Bearer ${token}`,
-        },
-      })
+      .put(
+        `https://blog-application-backend-5dvk.onrender.com/posts/${postId}`,
+        Details,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
       .then((res) => {
+        setEditFields({
+          title: false,
+        });
+        setBtnClicked(false);
         alert(res.data.status);
         navigate(`/posts`);
       })
       .catch((err) => {
         // alert(err.response.data.message);
+        setBtnClicked(false);
         console.log(err);
       });
+  };
+
+  const changeHandler = (e) => {
+    handlePostForm({ ...postForm, [e.target.name]: e.target.files[0] });
+  };
+
+  const inputHandler = (e) => {
+    const fieldName = e.target.name;
+
+    handlePostForm({
+      ...postForm,
+      [fieldName]: e.target.value,
+    });
+
+    setEditFields((prevState) => ({
+      ...prevState,
+      [fieldName]: true,
+    }));
   };
 
   return (
@@ -100,7 +127,8 @@ function EditPost() {
             required
             type="text"
             placeholder="Enter Post Heading"
-            value={postForm.title || postDetails.title}
+            // value={postForm.title || postDetails.title}
+            value={editFields.title ? postForm.title : postDetails.title}
             onChange={(e) => inputHandler(e)}
             name="title"
             id="title"
@@ -153,7 +181,7 @@ function EditPost() {
         </Form.Group>
 
         {navState ? (
-          <Button type="submit">
+          <Button type="submit" disabled={btnClicked}>
             {postbtnLabel ? "Publish" : "Please Wait While Publishing... "}
           </Button>
         ) : (
