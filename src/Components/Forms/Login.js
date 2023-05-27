@@ -62,7 +62,6 @@ function LoginForm() {
         setBtnClicked(false);
         // Display "Logging in..." in login button
         setLoginBtnLabel(true);
-        console.log(err);
         // Alert the original error message
         alert(err.response.data.message);
       });
