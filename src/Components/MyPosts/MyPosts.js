@@ -47,7 +47,7 @@ function MyPosts() {
     }
 
     axios
-      .get("/users/posts", {
+      .get("https://blog-application-backend-5dvk.onrender.com/users/posts", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -68,11 +68,14 @@ function MyPosts() {
   // Function to delete the post with the given id from the backend API and update the state of `postDeleted` accordingly
   const deletePost = (id) => {
     axios
-      .delete(`posts/${id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
+      .delete(
+        `https://blog-application-backend-5dvk.onrender.com/posts/${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
       .then((res) => {
         handlePostDel(!postDeleted);
         alert(res.data.data);
