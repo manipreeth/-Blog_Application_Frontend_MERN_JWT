@@ -17,6 +17,7 @@ function LoginForm() {
   });
 
   const [loginBtnLabel, setLoginBtnLabel] = useState(true);
+  const [btnClicked, setBtnClicked] = useState(false);
 
   // Function to handle user input changes
   const handleLoginForm = (e) => {
@@ -30,15 +31,19 @@ function LoginForm() {
   const login = async (event) => {
     event.preventDefault();
 
+    setBtnClicked(true);
+
     // Display "Logging in..." in login button
     setLoginBtnLabel(false);
 
     return await axios
-      .post("/users/login", {
+      .post("https://blog-application-backend-5dvk.onrender.com/users/login", {
         email: loginDetails.email,
         password: loginDetails.password,
       })
       .then((res) => {
+        setBtnClicked(false);
+
         if (res.data.user) {
           // After successful login
           // Redirect to validate otp page
@@ -54,9 +59,10 @@ function LoginForm() {
         }
       })
       .catch((err) => {
+        setBtnClicked(false);
         // Display "Logging in..." in login button
         setLoginBtnLabel(true);
-
+        console.log(err);
         // Alert the original error message
         alert(err.response.data.message);
       });
@@ -90,7 +96,7 @@ function LoginForm() {
             required
           />
           {loginDetails.email && loginDetails.password ? (
-            <button onClick={login}>
+            <button onClick={login} disabled={btnClicked}>
               {loginBtnLabel ? "Login" : "Logging in..."}
             </button>
           ) : (
