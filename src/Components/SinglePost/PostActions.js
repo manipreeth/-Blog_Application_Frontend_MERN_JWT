@@ -33,10 +33,35 @@ function PostActions(props) {
   const location = useLocation();
   const currentURL = `${window.location.origin}${location.pathname}${location.search}`;
 
-  // Function to copy link to clipboard
-  const copyToClipboard = (link) => {
-    navigator.clipboard.writeText(link);
-    alert("URL Copied !");
+  // Function to copy the URL to clipboard
+  const copyToClipboard = () => {
+    if (navigator.clipboard) {
+      // For desktop devices
+      navigator.clipboard
+        .writeText(currentURL)
+        .then(() => {
+          alert("URL Copied!");
+        })
+        .catch((error) => {
+          console.error("Failed to copy URL:", error);
+        });
+    } else {
+      // For mobile devices
+      const textArea = document.createElement("textarea");
+      textArea.value = currentURL;
+      textArea.style.position = "fixed";
+      document.body.appendChild(textArea);
+      textArea.focus();
+      textArea.select();
+      try {
+        const successful = document.execCommand("copy");
+        const message = successful ? "URL Copied!" : "Copying URL failed";
+        alert(message);
+      } catch (error) {
+        console.error("Failed to copy URL:", error);
+      }
+      document.body.removeChild(textArea);
+    }
   };
 
   // Share URl button tooltip
