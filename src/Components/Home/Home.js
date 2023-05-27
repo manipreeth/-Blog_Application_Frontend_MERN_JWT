@@ -34,7 +34,7 @@ function Home() {
       // Send JSON Web Token which is stored in LocalStorage for Authorization
       const token = localStorage.getItem("token");
       axios
-        .get("/posts", {
+        .get("https://blog-application-backend-5dvk.onrender.com/posts", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
