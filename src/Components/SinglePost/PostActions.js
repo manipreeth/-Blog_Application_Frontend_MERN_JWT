@@ -31,7 +31,7 @@ function PostActions(props) {
 
   // Get Current URL
   const location = useLocation();
-  const currentURL = `${window.location.origin}/viewPost${location.search}`;
+  const currentURL = `${window.location.origin}${location.pathname}${location.search}`;
 
   // Function to copy link to clipboard
   const copyToClipboard = (link) => {
