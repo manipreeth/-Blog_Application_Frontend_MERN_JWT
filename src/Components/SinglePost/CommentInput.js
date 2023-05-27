@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useState, useContext } from "react";
 import axios from "axios";
 
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
@@ -20,6 +20,9 @@ function CommentInput({ postIdentity }) {
   const [updateBtn, handleUpdateBtn] = commentProps.updateComment;
   const [updateID, hanldeUpdateID] = commentProps.updateID;
 
+  // Check if user clicked the button
+  const [btnClicked, setBtnClicked] = useState(false);
+
   const navigate = useNavigate();
 
   // Create a tooltip to display when user is not logged in
@@ -31,6 +34,8 @@ function CommentInput({ postIdentity }) {
 
   // Function to post a comment to the server
   const postComment = () => {
+    setBtnClicked(true);
+
     // Send JSON Web Token which is stored in LocalStorage for Authorization
     const token = localStorage.getItem("token");
 
@@ -38,7 +43,7 @@ function CommentInput({ postIdentity }) {
       // if the comment is not empty
       return axios
         .post(
-          `/comments/${postIdentity}`,
+          `https://blog-application-backend-5dvk.onrender.com/comments/${postIdentity}`,
           {
             // post the comment to the backend
             message: comment,
@@ -50,6 +55,7 @@ function CommentInput({ postIdentity }) {
           }
         )
         .then((res) => {
+          setBtnClicked(false);
           handleComment(""); // clear the comment input field
           // trigger a state change in SinglePost component to reload the comments
           handleCommentReload(!commentReload);
@@ -57,20 +63,23 @@ function CommentInput({ postIdentity }) {
         })
 
         .catch((err) => {
+          setBtnClicked(false);
           alert(err.response.data.message);
         });
     } else {
+      setBtnClicked(false);
       alert(" Enter your comment");
     }
   };
 
   const updateComment = (id) => {
+    setBtnClicked(true);
     // Send JSON Web Token which is stored in LocalStorage for Authorization
     const token = localStorage.getItem("token");
 
     axios
       .put(
-        `/comments/${id}`,
+        `https://blog-application-backend-5dvk.onrender.com/comments/${id}`,
         {
           message: comment,
         },
@@ -81,11 +90,13 @@ function CommentInput({ postIdentity }) {
         }
       )
       .then((res) => {
+        setBtnClicked(false);
         handleCommentReload(!commentReload);
         handleUpdateBtn(!updateBtn);
         handleComment("");
       })
       .catch((err) => {
+        setBtnClicked(false);
         alert(err.response.data.message);
       });
   };
@@ -106,17 +117,19 @@ function CommentInput({ postIdentity }) {
         <span>
           {updateBtn ? (
             <button
-              className="mx-2  px-3 px-lg-5 btn btn-secondary"
+              className="mx-2  px-3 px-lg-3 btn btn-success"
               onClick={() => updateComment(updateID)}
+              disabled={btnClicked}
             >
-              Update
+              {btnClicked ? "Updating Comment..." : "Update Comment"}
             </button>
           ) : (
             <button
-              className=" mx-2  px-3 px-lg-5 btn btn-primary"
+              className=" mx-2  px-3 px-lg-3 btn btn-primary"
               onClick={postComment}
+              disabled={btnClicked}
             >
-              Post
+              {btnClicked ? "Commenting..." : "Comment"}
             </button>
           )}
         </span>
