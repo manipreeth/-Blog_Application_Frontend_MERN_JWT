@@ -22,7 +22,7 @@ function Profile() {
   // Fetching user details on component mount and whenever 'profile' state changes
   useEffect(() => {
     axios
-      .get("/users/profile", {
+      .get("https://blog-application-backend-5dvk.onrender.com/users/profile", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -95,7 +95,11 @@ function Profile() {
               />
               <div>
                 <p className="ms-2 mb-0 fw-bolder">{userDetails.fullname}</p>
-                <p className="ms-3 mb-0">{formInput.username}</p>
+                <p className="ms-3 mb-0">
+                  {formInput.username
+                    ? formInput.username
+                    : userDetails.username}
+                </p>
               </div>
             </div>
             {/* User information */}
