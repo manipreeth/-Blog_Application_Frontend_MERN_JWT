@@ -72,7 +72,7 @@ const OtpForm = () => {
             </Form.Group>
             {btnClick ? (
               <Button
-                variant="secondary"
+                variant="primary"
                 type="submit"
                 disabled={true}
                 className="w-100 mt-4"
