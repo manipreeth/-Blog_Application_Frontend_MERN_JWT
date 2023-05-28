@@ -68,20 +68,19 @@
 
 /* Defining styles for screens with a maximum width of 991px */
 /* target mobile screen size */
-@media (max-width: 991px) {
+@media screen and (max-width: 991px) {
   .offcanvas a {
     color: rgb(0, 115, 255) !important;
     font-size: 18px !important;
     display: block;
   }
   .offcanvas .logoutBtn {
-    margin-left: 25% !important;
     width: 150px;
   }
 }
 
-/* Defining styles for screens with a minimum width of 1024px */
-@media screen and (min-width: 1024px) {
+/* Defining styles for screens with a minimum width of 992px */
+@media screen and (min-width: 992px) {
   .navLogo {
     margin-right: 100px;
   }
