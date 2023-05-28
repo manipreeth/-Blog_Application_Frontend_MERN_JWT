@@ -72,7 +72,7 @@ function Profile() {
             </div>
           </div>
           <button
-            className="btn btn-secondary px-5"
+            className="btn btn-primary px-5"
             onClick={() => handleProfile(!profile)}
           >
             Edit Profile
