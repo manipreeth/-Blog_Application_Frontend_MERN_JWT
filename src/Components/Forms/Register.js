@@ -32,50 +32,103 @@ function Register() {
   // Handle the form submission
   const Register = (event) => {
     event.preventDefault();
-    setBtnClicked(true);
 
     const { fullname, email, password, confirmPassword, mobile } =
       registerDetails;
 
-    // toggling button label to show loader message label
-    handleregisterbtnLabel(true);
+    // Trimmed inputs
+    const trimmedFullname = fullname.trim();
+    const trimmedEmail = email.trim();
+    const trimmedPassword = password.trim();
+    const trimmedConfirmPassword = confirmPassword.trim();
+    const trimmedMobile = mobile.trim();
 
-    // checking if password and confirm password are same or not
-    if (password !== confirmPassword) {
-      alert("Password and Confirm password does not match");
-    } else {
-      // making post request to register user
-      axios
-        .post(
-          "https://blog-application-backend-5dvk.onrender.com/users/register",
-          {
-            fullname: fullname,
-            email: email,
-            password: password,
-            mobile: mobile,
-          }
-        )
-        .then((res) => {
-          setBtnClicked(false);
-          handleregisterbtnLabel(false);
+    // Validate trimmed inputs
+    let errorMessage = "";
 
-          if (res.data.data) {
-            // redirecting to verify account page on successful registration
-            navigate(`/verifyaccount?userid=${res.data.data}`);
-          } else if (res.data.userId) {
-            alert("Please Verify Your Account By OTP Sent To Your Mail");
-            navigate(`/verifyaccount?userid=${res.data.userId}`);
-          } else {
-            alert("Something went wrong");
-          }
-        })
-        .catch((err) => {
-          setBtnClicked(false);
-          handleregisterbtnLabel(false);
+    switch (true) {
+      // Check if email includes @
+      case trimmedEmail.includes("@") === false:
+        errorMessage = "Please enter a valid email";
+        break;
 
-          // displaying error message on failed registration
-          alert(err.response.data.message);
-        });
+      // Check password length
+      case trimmedPassword.length < 10:
+        errorMessage = "Password must be at least 10 characters";
+        break;
+
+      // Check whether password and confirm password is same or not
+      case trimmedPassword !== trimmedConfirmPassword:
+        errorMessage = "Passwords do not match";
+        break;
+
+      // Check if mobile is of 10 numbers legth
+      case trimmedMobile.length !== 10:
+        errorMessage = "Please enter a valid mobile number";
+        break;
+
+      // check if mobile number is valid according to reference of below numbers
+      case trimmedMobile < "1000000000":
+      case trimmedMobile === "1234567890":
+      case trimmedMobile === "9876543210":
+      case trimmedMobile === "5678901234":
+      case trimmedMobile === "0000000000":
+      case trimmedMobile === "1111111111":
+      case trimmedMobile === "2222222222":
+      case trimmedMobile === "3333333333":
+      case trimmedMobile === "4444444444":
+      case trimmedMobile === "5555555555":
+      case trimmedMobile === "6666666666":
+      case trimmedMobile === "7777777777":
+      case trimmedMobile === "8888888888":
+      case trimmedMobile === "9999999999":
+        errorMessage = "Invalid mobile number";
+        break;
+
+      default:
+        // if all validations are passed
+
+        setBtnClicked(true);
+        // toggling button label to show loader message label
+        handleregisterbtnLabel(true);
+        // making post request to register user
+        axios
+          .post(
+            "https://blog-application-backend-5dvk.onrender.com/users/register",
+            {
+              fullname: trimmedFullname,
+              email: trimmedEmail,
+              password: trimmedPassword,
+              mobile: trimmedMobile,
+            }
+          )
+          .then((res) => {
+            setBtnClicked(false);
+            handleregisterbtnLabel(false);
+
+            if (res.data.data) {
+              // redirecting to verify account page on successful registration
+              navigate(`/verifyaccount?userid=${res.data.data}`);
+            } else if (res.data.userId) {
+              alert("Please Verify Your Account By OTP Sent To Your Mail");
+              navigate(`/verifyaccount?userid=${res.data.userId}`);
+            } else {
+              alert("Something went wrong");
+            }
+          })
+          .catch((err) => {
+            setBtnClicked(false);
+            handleregisterbtnLabel(false);
+
+            // displaying error message on failed registration
+            alert(err.response.data.message);
+          });
+    }
+
+    // Display error message if validation fails
+    if (errorMessage) {
+      alert(errorMessage);
+      return;
     }
   };
 
@@ -98,7 +151,8 @@ function Register() {
             placeholder="Enter your fullname"
             className="mb-30"
             id="name"
-            maxLength="15"
+            minLength="10"
+            maxLength="30"
             required
           />
           <label htmlFor="email">Email Id</label>
@@ -110,7 +164,7 @@ function Register() {
             placeholder="exmaple@xyz.com"
             className="mb-30"
             id="email"
-            maxLength="50"
+            maxLength="40"
             required
           />
           <label htmlFor="pswd">Password</label>
@@ -122,6 +176,7 @@ function Register() {
             placeholder="***************"
             id="pswd"
             className="mb-30"
+            minLength="10"
             maxLength="15"
             required
           />
@@ -135,6 +190,7 @@ function Register() {
             placeholder="Re-type your password"
             id="confirmPassword"
             className="mb-30"
+            minLength="10"
             maxLength="15"
             required
           />
@@ -148,6 +204,9 @@ function Register() {
             placeholder="Enter your mobile number"
             id="mobile"
             className="mb-30"
+            min="1000000000"
+            max="9999999999"
+            minLength="10"
             maxLength="10"
             required
           />
