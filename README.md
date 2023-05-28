@@ -1,4 +1,4 @@
-# Blog Application-MERN stack(CURD Operations) 📝🌐
+# Blog Application-MERN stack 📝🌐
 
 ## Description 📝
 
@@ -40,7 +40,7 @@ The Blog Application includes the following features:
 - User can read comments made by other users</br>
   </br>
 
-👍 Liking Functionality:</br>
+👍 Like/Unlike Functionality:</br>
 
 - Users can like and unlike posts by clicking on heart icon.</br>
 - Like status is displayed on each post.</br>
