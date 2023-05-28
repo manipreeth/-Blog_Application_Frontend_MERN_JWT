@@ -121,6 +121,6 @@ button.is_active {
 /* Media query for screens wider than 984px */
 @media screen and (min-width: 984px) {
   .ProseMirror {
-    min-height: 270px;
+    min-height: 225px;
   }
 }

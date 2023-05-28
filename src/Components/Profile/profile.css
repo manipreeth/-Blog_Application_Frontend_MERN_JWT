@@ -37,7 +37,7 @@
 /* Styles the profile about textarea */
 .profileAbout {
   width: 250px;
-  height: 150px;
+  height: 140px;
   resize: none;
   padding: 0.1rem 0.2rem;
 }

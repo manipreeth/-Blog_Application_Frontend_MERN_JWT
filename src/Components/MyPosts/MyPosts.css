@@ -10,7 +10,7 @@
 }
 
 .mypostImg {
-  height: 270px;
+  height: 250px;
   margin: 15px auto;
 }
 /* image inside each post */
@@ -18,7 +18,7 @@
   max-width: 100%;
   text-align: center;
   margin: 1px auto;
-  height: 265px;
+  height: 245px;
 }
 
 .myposts p {
@@ -27,7 +27,7 @@
 
 /* Description of post */
 .mypostDes {
-  height: 280px;
+  height: 200px;
   overflow: hidden;
 }
 

@@ -105,7 +105,7 @@ function CreatePost() {
       {/* The post creation form */}
       <Form onSubmit={handleSubmit}>
         {/* Form input for post title */}
-        <Form.Group className=" mb-4 mb-md-3">
+        <Form.Group className=" mb-4 mb-md-2">
           <Form.Label htmlFor="title">Post Title:</Form.Label>
           <Form.Control
             required
@@ -119,7 +119,7 @@ function CreatePost() {
         </Form.Group>
 
         {/* Form input for post image */}
-        <Form.Group className=" mb-3">
+        <Form.Group className=" mb-2">
           <Form.Label htmlFor="postImage">Post Image:</Form.Label>
           <Form.Control
             type="file"
@@ -130,7 +130,7 @@ function CreatePost() {
           />
         </Form.Group>
         {/* Form input for post category */}
-        <Form.Group className=" mb-4 mb-md-3">
+        <Form.Group className=" mb-4 mb-md-2">
           <Form.Label htmlFor="category">Post Category:</Form.Label>
           <Form.Select
             required
@@ -154,7 +154,7 @@ function CreatePost() {
         </Form.Group>
 
         {/* Form input for post description */}
-        <Form.Group className=" mb-3">
+        <Form.Group className=" mb-2">
           <Form.Label>Post Description:</Form.Label>
           <Description setDescription={setDescription} />
         </Form.Group>

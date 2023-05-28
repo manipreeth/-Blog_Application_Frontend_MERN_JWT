@@ -156,7 +156,7 @@
   /* These styles apply to the login and register sections */
   .login .loginDiv,
   .login .registerDiv {
-    width: 450px;
+    width: 430px;
     padding: 10px 35px 15px;
     margin-right: 5px;
   }
@@ -215,7 +215,7 @@
 @media Screen and (min-width: 1440px) {
   /* These styles apply to the login section */
   .login {
-    padding: 55px 40px;
+    padding: 15px 40px;
   }
 
   /* These styles apply to the blog icon */

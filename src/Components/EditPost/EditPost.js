@@ -121,7 +121,7 @@ function EditPost() {
   return (
     <div className="container routeLayout p-3 createPost">
       <Form onSubmit={handleSubmit}>
-        <Form.Group className=" mb-4 mb-md-3">
+        <Form.Group className=" mb-4 mb-md-2">
           <Form.Label htmlFor="title">Post Title:</Form.Label>
           <Form.Control
             required
@@ -135,7 +135,7 @@ function EditPost() {
           />
         </Form.Group>
 
-        <Form.Group className=" mb-3">
+        <Form.Group className=" mb-2">
           <Form.Label htmlFor="postImage">Post Image:</Form.Label>
           <Form.Control
             type="file"
@@ -146,7 +146,7 @@ function EditPost() {
           />
         </Form.Group>
 
-        <Form.Group className=" mb-4 mb-md-3">
+        <Form.Group className=" mb-4 mb-md-2">
           <Form.Label htmlFor="category">Post Category:</Form.Label>
           <Form.Select
             required
@@ -170,7 +170,7 @@ function EditPost() {
           </Form.Select>
         </Form.Group>
 
-        <Form.Group className=" mb-3">
+        <Form.Group className=" mb-2">
           <Form.Label>Post Description:</Form.Label>
           <Description
             setDescription={setDescription}
