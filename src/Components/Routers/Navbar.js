@@ -148,13 +148,16 @@ function NavigationBar() {
         placement="end"
       >
         <Offcanvas.Header closeButton>
-          <Offcanvas.Title id="offcanvasNavbarLabel-expand-lg">
+          <Offcanvas.Title
+            id="offcanvasNavbarLabel-expand-lg"
+            className="tc-orange fw-bolder"
+          >
             &lt;/&gt;BlogoSphere
           </Offcanvas.Title>
         </Offcanvas.Header>
 
         <Offcanvas.Body>
-          <Nav className="justify-content-end flex-grow-1 pe-3 navlinks">
+          <Nav className="justify-content-center flex-grow-1 pe-3 navlinks d-lg-flex">
             {navState ? (
               // If navState is true, show the following links in navigation bar
               <nav>
