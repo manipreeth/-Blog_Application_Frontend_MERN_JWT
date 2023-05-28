@@ -49,6 +49,19 @@ function Home() {
     }
   }, [navState]);
 
+  // Handle click event for read more link
+  const handleReadMore = (postId, event) => {
+    event.preventDefault();
+    const url = `/singlePost?postid=${postId}`;
+    if (event.button === 0) {
+      // Left click: navigate within the app
+      navigate(url);
+    } else if (event.button === 1) {
+      // Middle click: open link in a new tab
+      window.open(url, "_blank");
+    }
+  };
+
   // Render the component with the post data received from the API
   return (
     <>
@@ -126,9 +139,8 @@ function Home() {
                         {/* Renders a button to navigate to the single post page */}
                         <a
                           className=" d-lg-block  readmore"
-                          onClick={() =>
-                            navigate(`/singlePost?postid=${item._id}`)
-                          }
+                          onClick={(event) => handleReadMore(item._id, event)}
+                          href={`/singlePost?postid=${item._id}`}
                         >
                           Read more
                           <FiExternalLink />
