@@ -42,9 +42,11 @@
 }
 
 .postTitleSize {
-  width: 230px;
+  max-width: 230px;
   overflow: hidden;
   height: 30px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 /* Media query for screens with a minimum width of 768px */
