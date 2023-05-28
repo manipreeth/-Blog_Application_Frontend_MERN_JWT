@@ -28,56 +28,76 @@ function EditProfile(props) {
   // Function to update user's profile
   const update = () => {
     const { profileImage, mobile, username, about, gender } = formInput;
-    handleBtnLabel(false);
-    setBtnClicked(true);
 
-    // Send JSON Web Token which is stored in LocalStorage for Authorization
-    const token = localStorage.getItem("token");
+    // check if mobile number is valid according to reference of below numbers
+    if (
+      mobile < "1000000000" ||
+      mobile === "1234567890" ||
+      mobile === "9876543210" ||
+      mobile === "5678901234" ||
+      mobile === "0000000000" ||
+      mobile === "1111111111" ||
+      mobile === "2222222222" ||
+      mobile === "3333333333" ||
+      mobile === "4444444444" ||
+      mobile === "5555555555" ||
+      mobile === "6666666666" ||
+      mobile === "7777777777" ||
+      mobile === "8888888888" ||
+      mobile === "9999999999"
+    ) {
+      return alert("Invalid mobile number");
+    } else {
+      handleBtnLabel(false);
+      setBtnClicked(true);
+      // Send JSON Web Token which is stored in LocalStorage for Authorization
+      const token = localStorage.getItem("token");
 
-    axios
-      .put(
-        "https://blog-application-backend-5dvk.onrender.com/users/update",
-        {
-          profileImage: profileImage || userDetails.profileImage,
-          mobile: mobile || userDetails.mobile,
-          username: username || userDetails.username,
-          about: about || userDetails.about,
-          gender: gender || userDetails.gender,
-        },
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-            Authorization: `Bearer ${token}`,
+      axios
+        .put(
+          "https://blog-application-backend-5dvk.onrender.com/users/update",
+          {
+            profileImage: profileImage || userDetails.profileImage,
+            mobile: mobile || userDetails.mobile,
+            username: username || userDetails.username,
+            about: about || userDetails.about,
+            gender: gender || userDetails.gender,
           },
-        }
-      )
-      .then((res) => {
-        setEditFields({
-          mobile: false,
-          username: false,
-          about: false,
-          gender: false,
-        });
-        handleFormInput({
-          profileImage: null,
-          mobile: null,
-          username: "",
-          about: "",
-          gender: "",
-        });
-        handleProfile(!profile);
-        setBtnClicked(false);
-        handleBtnLabel(true);
-      })
-      .catch((err) => {
-        setBtnClicked(false);
-        handleBtnLabel(true);
-        if (
-          err.response.data.message ==
-          "Cannot read property 'path' of undefined"
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+              Authorization: `Bearer ${token}`,
+            },
+          }
         )
-          alert("Please reupload your profile image!");
-      });
+        .then((res) => {
+          setEditFields({
+            mobile: false,
+            username: false,
+            about: false,
+            gender: false,
+          });
+          handleFormInput({
+            profileImage: null,
+            mobile: null,
+            username: "",
+            about: "",
+            gender: "",
+          });
+          handleProfile(!profile);
+          setBtnClicked(false);
+          handleBtnLabel(true);
+        })
+        .catch((err) => {
+          setBtnClicked(false);
+          handleBtnLabel(true);
+          if (
+            err.response.data.message ==
+            "Cannot read property 'path' of undefined"
+          )
+            alert("Please reupload your profile image!");
+        });
+    }
   };
 
   // Function to handle changes in the profile image input field
@@ -173,6 +193,8 @@ function EditProfile(props) {
               }
               onChange={(e) => inputHandler(e)}
               name="mobile"
+              min="1000000000"
+              max="9999999999"
               minLength="10"
               maxLength="10"
             />
