@@ -75,6 +75,7 @@ function Comments(props) {
     handleComment(value);
     handleUpdateBtn(!updateBtn);
     hanldeUpdateID([...updateID, id]);
+    handleComments("");
   };
 
   const Delete = (index, id) => {
