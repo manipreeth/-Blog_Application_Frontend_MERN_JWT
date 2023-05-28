@@ -37,7 +37,7 @@ function CommentInput({ postIdentity }) {
     setBtnClicked(true);
 
     // Send JSON Web Token which is stored in LocalStorage for Authorization
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("Blogospheretoken");
 
     if (comment.length > 0) {
       // if the comment is not empty
@@ -75,7 +75,7 @@ function CommentInput({ postIdentity }) {
   const updateComment = (id) => {
     setBtnClicked(true);
     // Send JSON Web Token which is stored in LocalStorage for Authorization
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("Blogospheretoken");
 
     axios
       .put(

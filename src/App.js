@@ -18,7 +18,9 @@ export const ParentContext = React.createContext();
  */
 
 function App() {
-  const [navState, handleNavState] = useState(!!localStorage.getItem("token"));
+  const [navState, handleNavState] = useState(
+    !!localStorage.getItem("Blogospheretoken")
+  );
   const [profile, handleProfile] = useState(true);
   const [formInput, handleFormInput] = useState({
     profilePic: null,

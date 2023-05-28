@@ -88,7 +88,7 @@ function PostActions(props) {
   // function to like the post
   const likePost = (id) => {
     // Send JSON Web Token which is stored in LocalStorage for Authorization
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("Blogospheretoken");
 
     axios
       .post(
@@ -109,7 +109,7 @@ function PostActions(props) {
   // function to unlike the post
   const unlikePost = (id) => {
     // Send JSON Web Token which is stored in LocalStorage for Authorization
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("Blogospheretoken");
 
     axios
       .post(

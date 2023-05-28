@@ -49,7 +49,7 @@ function Comments(props) {
     }
 
     // get token from localStorage
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("Blogospheretoken");
 
     axios
       .get(
@@ -79,7 +79,7 @@ function Comments(props) {
 
   const Delete = (index, id) => {
     // Send JSON Web Token which is stored in LocalStorage for Authorization
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("Blogospheretoken");
 
     axios
       .delete(

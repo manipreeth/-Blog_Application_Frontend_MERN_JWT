@@ -22,7 +22,7 @@ function Navlinks() {
   // Create a function called Logout which will log the user out when clicked
   const Logout = () => {
     // Send JSON Web Token which is stored in LocalStorage for Authorization
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("Blogospheretoken");
     axios
       .get("https://blog-application-backend-5dvk.onrender.com/users/logout", {
         // Set Authorization header to include the token

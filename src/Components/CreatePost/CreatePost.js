@@ -65,7 +65,7 @@ function CreatePost() {
     };
 
     // Send JSON Web Token which is stored in LocalStorage for Authorization
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("Blogospheretoken");
 
     // Send a POST request to the server to create a new post
     axios

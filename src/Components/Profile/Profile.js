@@ -17,7 +17,7 @@ function Profile() {
   const [userDetails, handleUserDetails] = useState([]);
 
   // Send JSON Web Token which is stored in LocalStorage for Authorization
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem("Blogospheretoken");
 
   // Fetching user details on component mount and whenever 'profile' state changes
   useEffect(() => {

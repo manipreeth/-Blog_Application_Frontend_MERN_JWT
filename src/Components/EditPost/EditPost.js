@@ -39,7 +39,7 @@ function EditPost() {
       return; // Stop further execution of the code
     }
     // Send JSON Web Token which is stored in LocalStorage for Authorization
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("Blogospheretoken");
 
     axios
       .get(
@@ -72,7 +72,7 @@ function EditPost() {
     };
 
     // Send JSON Web Token which is stored in LocalStorage for Authorization
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("Blogospheretoken");
 
     axios
       .put(

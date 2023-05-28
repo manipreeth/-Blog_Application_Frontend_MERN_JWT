@@ -32,7 +32,7 @@ function Home() {
   useEffect(() => {
     if (navState) {
       // Send JSON Web Token which is stored in LocalStorage for Authorization
-      const token = localStorage.getItem("token");
+      const token = localStorage.getItem("Blogospheretoken");
       axios
         .get("https://blog-application-backend-5dvk.onrender.com/posts", {
           headers: {

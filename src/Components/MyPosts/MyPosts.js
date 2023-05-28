@@ -37,7 +37,7 @@ function MyPosts() {
   const [isLoading, setLoading] = useState(true);
 
   // Send JSON Web Token which is stored in LocalStorage for Authorization
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem("Blogospheretoken");
 
   // Using the useEffect hook to fetch the data from the backend API and update the state of `MyPost` when `postDeleted` is changed
   useEffect(() => {

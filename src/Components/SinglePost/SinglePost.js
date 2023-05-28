@@ -70,7 +70,7 @@ function SinglePost() {
     }
 
     // get token from localStorage
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("Blogospheretoken");
 
     // Set the post ID to the post ID in the URL
     axios

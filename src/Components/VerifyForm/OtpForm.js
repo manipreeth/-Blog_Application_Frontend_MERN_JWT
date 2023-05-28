@@ -38,7 +38,7 @@ const OtpForm = () => {
       .then((res) => {
         if (res.data.token) {
           setBtnClick(false);
-          localStorage.setItem("token", res.data.token);
+          localStorage.setItem("Blogospheretoken", res.data.token);
           handleNavState(!navState);
           navigate("/");
         } else {
