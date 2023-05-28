@@ -99,6 +99,19 @@ function MyPosts() {
     </Tooltip>
   );
 
+  // Handle click event for read more link
+  const handleReadMore = (postId, event) => {
+    event.preventDefault();
+    const url = `/singlePost?postid=${postId}`;
+    if (event.button === 0) {
+      // Left click: navigate within the app
+      navigate(url);
+    } else if (event.button === 1) {
+      // Middle click: open link in a new tab
+      window.open(url, "_blank");
+    }
+  };
+
   if (isLoading) {
     return (
       <div className="d-flex flex-column flex-wrap align-items-center container">
@@ -107,6 +120,7 @@ function MyPosts() {
       </div>
     );
   }
+
   return (
     <div className="d-flex flex-wrap container routeLayout justify-content-md-between justify-content-xl-start">
       {MyPost.length > 0 ? (
@@ -158,7 +172,8 @@ function MyPosts() {
               {/* CSS of classname readmore declared in home.css */}
               <a
                 className="d-block text-decoration-none readmore"
-                onClick={() => navigate(`/singlePost?postid=${value._id}`)}
+                onClick={(event) => handleReadMore(value._id, event)}
+                href={`/singlePost?postid=${value._id}`}
               >
                 Read more
                 <FiExternalLink />
