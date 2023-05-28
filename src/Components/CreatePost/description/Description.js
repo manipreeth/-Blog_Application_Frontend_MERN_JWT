@@ -29,33 +29,46 @@ const MenuBar = ({ editor }) => {
     <div className="menuBar">
       <div>
         <button
-          onClick={() => editor.chain().focus().toggleBold().run()}
+          onClick={(e) => {
+            e.preventDefault();
+            editor.chain().focus().toggleBold().run();
+          }}
           className={editor.isActive("bold") ? "is_active" : ""}
         >
           <FaBold />
         </button>
         <button
-          onClick={() => editor.chain().focus().toggleItalic().run()}
+          onClick={(e) => {
+            e.preventDefault();
+            editor.chain().focus().toggleItalic().run();
+          }}
           className={editor.isActive("italic") ? "is_active" : ""}
         >
           <FaItalic />
         </button>
         <button
-          onClick={() => editor.chain().focus().toggleUnderline().run()}
+          onClick={(e) => {
+            e.preventDefault();
+            editor.chain().focus().toggleUnderline().run();
+          }}
           className={editor.isActive("underline") ? "is_active" : ""}
         >
           <FaUnderline />
         </button>
         <button
-          onClick={() => editor.chain().focus().toggleStrike().run()}
+          onClick={(e) => {
+            e.preventDefault();
+            editor.chain().focus().toggleStrike().run();
+          }}
           className={editor.isActive("strike") ? "is_active" : ""}
         >
           <FaStrikethrough />
         </button>
         <button
-          onClick={() =>
-            editor.chain().focus().toggleHeading({ level: 2 }).run()
-          }
+          onClick={(e) => {
+            e.preventDefault();
+            editor.chain().focus().toggleHeading({ level: 2 }).run();
+          }}
           className={
             editor.isActive("heading", { level: 2 }) ? "is_active" : ""
           }
@@ -63,9 +76,10 @@ const MenuBar = ({ editor }) => {
           <FaHeading />
         </button>
         <button
-          onClick={() =>
-            editor.chain().focus().toggleHeading({ level: 3 }).run()
-          }
+          onClick={(e) => {
+            e.preventDefault();
+            editor.chain().focus().toggleHeading({ level: 3 }).run();
+          }}
           className={
             editor.isActive("heading", { level: 3 }) ? "is_active" : ""
           }
@@ -73,29 +87,48 @@ const MenuBar = ({ editor }) => {
           <FaHeading className="heading3" />
         </button>
         <button
-          onClick={() => editor.chain().focus().toggleBulletList().run()}
+          onClick={(e) => {
+            e.preventDefault();
+            editor.chain().focus().toggleBulletList().run();
+          }}
           className={editor.isActive("bulletList") ? "is_active" : ""}
         >
           <FaListUl />
         </button>
         <button
-          onClick={() => editor.chain().focus().toggleOrderedList().run()}
+          onClick={(e) => {
+            e.preventDefault();
+            editor.chain().focus().toggleOrderedList().run();
+          }}
           className={editor.isActive("orderedList") ? "is_active" : ""}
         >
           <FaListOl />
         </button>
         <button
-          onClick={() => editor.chain().focus().toggleBlockquote().run()}
+          onClick={(e) => {
+            e.preventDefault();
+            editor.chain().focus().toggleBlockquote().run();
+          }}
           className={editor.isActive("blockquote") ? "is_active" : ""}
         >
           <FaQuoteLeft />
         </button>
       </div>
       <div>
-        <button onClick={() => editor.chain().focus().undo().run()}>
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            editor.chain().focus().undo().run();
+          }}
+        >
           <FaUndo />
         </button>
-        <button onClick={() => editor.chain().focus().redo().run()}>
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            editor.chain().focus().redo().run();
+          }}
+        >
           <FaRedo />
         </button>
       </div>
