@@ -31,20 +31,34 @@ function EditProfile(props) {
 
     // check if mobile number is valid according to reference of below numbers
     if (
-      mobile < "1000000000" ||
-      mobile === "1234567890" ||
-      mobile === "9876543210" ||
-      mobile === "5678901234" ||
-      mobile === "0000000000" ||
-      mobile === "1111111111" ||
-      mobile === "2222222222" ||
-      mobile === "3333333333" ||
-      mobile === "4444444444" ||
-      mobile === "5555555555" ||
-      mobile === "6666666666" ||
-      mobile === "7777777777" ||
-      mobile === "8888888888" ||
-      mobile === "9999999999"
+      mobile ||
+      userDetails.mobile < "1000000000" ||
+      mobile ||
+      userDetails.mobile === "1234567890" ||
+      mobile ||
+      userDetails.mobile === "9876543210" ||
+      mobile ||
+      userDetails.mobile === "5678901234" ||
+      mobile ||
+      userDetails.mobile === "0000000000" ||
+      mobile ||
+      userDetails.mobile === "1111111111" ||
+      mobile ||
+      userDetails.mobile === "2222222222" ||
+      mobile ||
+      userDetails.mobile === "3333333333" ||
+      mobile ||
+      userDetails.mobile === "4444444444" ||
+      mobile ||
+      userDetails.mobile === "5555555555" ||
+      mobile ||
+      userDetails.mobile === "6666666666" ||
+      mobile ||
+      userDetails.mobile === "7777777777" ||
+      mobile ||
+      userDetails.mobile === "8888888888" ||
+      mobile ||
+      userDetails.mobile === "9999999999"
     ) {
       return alert("Invalid mobile number");
     } else {
@@ -92,7 +106,7 @@ function EditProfile(props) {
           setBtnClicked(false);
           handleBtnLabel(true);
           if (
-            err.response.data.message ==
+            err.response.data.message ===
             "Cannot read property 'path' of undefined"
           )
             alert("Please reupload your profile image!");
@@ -222,7 +236,7 @@ function EditProfile(props) {
         </div>
 
         {/* About section of user */}
-        <div className=" mb-2 d-md-flex align-items-md-start">
+        <div className=" mb-2 d-flex align-items-start">
           <label>About:</label>
           &nbsp;&nbsp;&nbsp;
           <textarea
